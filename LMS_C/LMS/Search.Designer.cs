@@ -29,341 +29,201 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearch));
-            pnlSidebar = new Panel();
-            lblLogout = new Label();
-            imgLogout = new PictureBox();
-            lblBooks = new Label();
-            imgBooks = new PictureBox();
-            lblSearch = new Label();
-            imgSearch = new PictureBox();
-            lblHome = new Label();
-            imgHome = new PictureBox();
-            lblDashboard = new Label();
-            imgDashboard = new PictureBox();
-            lblLogo = new Label();
-            imgLogo = new PictureBox();
-            txtSearch = new TextBox();
-            pictureBox1 = new PictureBox();
-            cmbCategories = new ComboBox();
-            ListView = new ListView();
-            lvwID = new ColumnHeader();
-            lvwTitle = new ColumnHeader();
-            lvwAuthor = new ColumnHeader();
-            lvwGenre = new ColumnHeader();
-            listView1 = new ListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
-            columnHeader4 = new ColumnHeader();
-            pnlSidebar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgLogout).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgBooks).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgSearch).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgHome).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgDashboard).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgLogo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            SuspendLayout();
-            // 
-            // pnlSidebar
-            // 
-            pnlSidebar.BackColor = Color.Azure;
-            pnlSidebar.BorderStyle = BorderStyle.FixedSingle;
-            pnlSidebar.Controls.Add(lblLogout);
-            pnlSidebar.Controls.Add(imgLogout);
-            pnlSidebar.Controls.Add(lblBooks);
-            pnlSidebar.Controls.Add(imgBooks);
-            pnlSidebar.Controls.Add(lblSearch);
-            pnlSidebar.Controls.Add(imgSearch);
-            pnlSidebar.Controls.Add(lblHome);
-            pnlSidebar.Controls.Add(imgHome);
-            pnlSidebar.Controls.Add(lblDashboard);
-            pnlSidebar.Controls.Add(imgDashboard);
-            pnlSidebar.Controls.Add(lblLogo);
-            pnlSidebar.Controls.Add(imgLogo);
-            pnlSidebar.Location = new Point(-1, -1);
-            pnlSidebar.Name = "pnlSidebar";
-            pnlSidebar.Size = new Size(208, 563);
-            pnlSidebar.TabIndex = 2;
-            // 
-            // lblLogout
-            // 
-            lblLogout.AutoSize = true;
-            lblLogout.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblLogout.Location = new Point(83, 512);
-            lblLogout.Name = "lblLogout";
-            lblLogout.Size = new Size(64, 18);
-            lblLogout.TabIndex = 11;
-            lblLogout.Text = "Logout";
-            lblLogout.Click += lblLogout_Click;
-            // 
-            // imgLogout
-            // 
-            imgLogout.Image = Properties.Resources.logout;
-            imgLogout.Location = new Point(159, 506);
-            imgLogout.Name = "imgLogout";
-            imgLogout.Size = new Size(30, 30);
-            imgLogout.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgLogout.TabIndex = 10;
-            imgLogout.TabStop = false;
-            // 
-            // lblBooks
-            // 
-            lblBooks.AutoSize = true;
-            lblBooks.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblBooks.ForeColor = SystemColors.ControlDarkDark;
-            lblBooks.Location = new Point(64, 344);
-            lblBooks.Name = "lblBooks";
-            lblBooks.Size = new Size(85, 18);
-            lblBooks.TabIndex = 9;
-            lblBooks.Text = "My Books";
-            lblBooks.Click += lblBooks_Click;
-            // 
-            // imgBooks
-            // 
-            imgBooks.Image = Properties.Resources.books;
-            imgBooks.Location = new Point(28, 338);
-            imgBooks.Name = "imgBooks";
-            imgBooks.Size = new Size(30, 30);
-            imgBooks.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgBooks.TabIndex = 8;
-            imgBooks.TabStop = false;
-            // 
-            // lblSearch
-            // 
-            lblSearch.AutoSize = true;
-            lblSearch.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSearch.Location = new Point(64, 302);
-            lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(62, 18);
-            lblSearch.TabIndex = 7;
-            lblSearch.Text = "Search";
-            // 
-            // imgSearch
-            // 
-            imgSearch.Image = Properties.Resources.search;
-            imgSearch.Location = new Point(28, 296);
-            imgSearch.Name = "imgSearch";
-            imgSearch.Size = new Size(30, 30);
-            imgSearch.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgSearch.TabIndex = 6;
-            imgSearch.TabStop = false;
-            // 
-            // lblHome
-            // 
-            lblHome.AutoSize = true;
-            lblHome.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblHome.ForeColor = SystemColors.ControlDarkDark;
-            lblHome.Location = new Point(63, 259);
-            lblHome.Name = "lblHome";
-            lblHome.Size = new Size(55, 18);
-            lblHome.TabIndex = 5;
-            lblHome.Text = "Home";
-            lblHome.Click += lblHome_Click;
-            // 
-            // imgHome
-            // 
-            imgHome.Image = Properties.Resources.home;
-            imgHome.Location = new Point(27, 253);
-            imgHome.Name = "imgHome";
-            imgHome.Size = new Size(30, 30);
-            imgHome.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgHome.TabIndex = 4;
-            imgHome.TabStop = false;
-            // 
-            // lblDashboard
-            // 
-            lblDashboard.AutoSize = true;
-            lblDashboard.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDashboard.ForeColor = SystemColors.ControlDarkDark;
-            lblDashboard.Location = new Point(63, 215);
-            lblDashboard.Name = "lblDashboard";
-            lblDashboard.Size = new Size(95, 18);
-            lblDashboard.TabIndex = 3;
-            lblDashboard.Text = "Dashboard";
-            // 
-            // imgDashboard
-            // 
-            imgDashboard.Image = Properties.Resources.dashboard;
-            imgDashboard.Location = new Point(27, 208);
-            imgDashboard.Name = "imgDashboard";
-            imgDashboard.Size = new Size(30, 30);
-            imgDashboard.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgDashboard.TabIndex = 2;
-            imgDashboard.TabStop = false;
-            // 
-            // lblLogo
-            // 
-            lblLogo.AutoSize = true;
-            lblLogo.Font = new Font("Viner Hand ITC", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lblLogo.Location = new Point(21, 95);
-            lblLogo.Name = "lblLogo";
-            lblLogo.Size = new Size(168, 44);
-            lblLogo.TabIndex = 1;
-            lblLogo.Text = "UrbanRead";
-            // 
-            // imgLogo
-            // 
-            imgLogo.Image = Properties.Resources.liblogo1;
-            imgLogo.Location = new Point(63, 22);
-            imgLogo.Name = "imgLogo";
-            imgLogo.Size = new Size(70, 70);
-            imgLogo.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgLogo.TabIndex = 0;
-            imgLogo.TabStop = false;
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.cmbCategories = new System.Windows.Forms.ComboBox();
+            this.ListView = new System.Windows.Forms.ListView();
+            this.lvwID = new System.Windows.Forms.ColumnHeader();
+            this.lvwTitle = new System.Windows.Forms.ColumnHeader();
+            this.lvwAuthor = new System.Windows.Forms.ColumnHeader();
+            this.lvwGenre = new System.Windows.Forms.ColumnHeader();
+            this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.imgHome = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.imgSearch = new System.Windows.Forms.PictureBox();
+            this.imgLogout = new System.Windows.Forms.PictureBox();
+            this.imgBooks = new System.Windows.Forms.PictureBox();
+            this.imgLogo = new System.Windows.Forms.PictureBox();
+            this.pnlSidebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgBooks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
+            this.SuspendLayout();
             // 
             // txtSearch
             // 
-            txtSearch.BackColor = Color.Azure;
-            txtSearch.Location = new Point(454, 22);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(575, 23);
-            txtSearch.TabIndex = 3;
-            txtSearch.TextChanged += txtSearch_TextChanged;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 50);
-            pictureBox1.TabIndex = 10;
-            pictureBox1.TabStop = false;
+            this.txtSearch.BackColor = System.Drawing.Color.Azure;
+            this.txtSearch.Location = new System.Drawing.Point(314, 18);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(558, 23);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // cmbCategories
             // 
-            cmbCategories.BackColor = Color.Azure;
-            cmbCategories.FormattingEnabled = true;
-            cmbCategories.Location = new Point(226, 22);
-            cmbCategories.Name = "cmbCategories";
-            cmbCategories.Size = new Size(212, 24);
-            cmbCategories.TabIndex = 8;
-            cmbCategories.Text = "Categories";
+            this.cmbCategories.BackColor = System.Drawing.Color.Azure;
+            this.cmbCategories.FormattingEnabled = true;
+            this.cmbCategories.Location = new System.Drawing.Point(86, 18);
+            this.cmbCategories.Name = "cmbCategories";
+            this.cmbCategories.Size = new System.Drawing.Size(212, 24);
+            this.cmbCategories.TabIndex = 8;
+            this.cmbCategories.Text = "Categories";
+            this.cmbCategories.SelectedIndexChanged += new System.EventHandler(this.cmbCategories_SelectedIndexChanged);
             // 
             // ListView
             // 
-            ListView.BackColor = Color.Azure;
-            ListView.Columns.AddRange(new ColumnHeader[] { lvwID, lvwTitle, lvwAuthor, lvwGenre });
-            ListView.FullRowSelect = true;
-            ListView.GridLines = true;
-            ListView.Location = new Point(226, 65);
-            ListView.Name = "ListView";
-            ListView.Size = new Size(833, 471);
-            ListView.TabIndex = 9;
-            ListView.UseCompatibleStateImageBehavior = false;
-            ListView.View = View.Details;
-            ListView.MouseDoubleClick += ListView_MouseDoubleClick;
+            this.ListView.BackColor = System.Drawing.Color.Azure;
+            this.ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwID,
+            this.lvwTitle,
+            this.lvwAuthor,
+            this.lvwGenre});
+            this.ListView.FullRowSelect = true;
+            this.ListView.GridLines = true;
+            this.ListView.Location = new System.Drawing.Point(86, 61);
+            this.ListView.Name = "ListView";
+            this.ListView.Size = new System.Drawing.Size(786, 488);
+            this.ListView.TabIndex = 9;
+            this.ListView.UseCompatibleStateImageBehavior = false;
+            this.ListView.View = System.Windows.Forms.View.Details;
+            this.ListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseDoubleClick);
             // 
             // lvwID
             // 
-            lvwID.Text = "Book ID";
-            lvwID.Width = 230;
+            this.lvwID.Text = "Book ID";
+            this.lvwID.Width = 230;
             // 
             // lvwTitle
             // 
-            lvwTitle.Text = "Book Title";
-            lvwTitle.TextAlign = HorizontalAlignment.Center;
-            lvwTitle.Width = 200;
+            this.lvwTitle.Text = "Book Title";
+            this.lvwTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lvwTitle.Width = 200;
             // 
             // lvwAuthor
             // 
-            lvwAuthor.Text = "Author";
-            lvwAuthor.TextAlign = HorizontalAlignment.Center;
-            lvwAuthor.Width = 200;
+            this.lvwAuthor.Text = "Author";
+            this.lvwAuthor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lvwAuthor.Width = 200;
             // 
             // lvwGenre
             // 
-            lvwGenre.Text = "Genre";
-            lvwGenre.TextAlign = HorizontalAlignment.Center;
-            lvwGenre.Width = 200;
+            this.lvwGenre.Text = "Genre";
+            this.lvwGenre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lvwGenre.Width = 200;
             // 
-            // listView1
+            // pnlSidebar
             // 
-            listView1.BackColor = Color.Azure;
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
-            listView1.FullRowSelect = true;
-            listView1.GridLines = true;
-            listView1.HoverSelection = true;
-            listView1.Location = new Point(268, 73);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(761, 448);
-            listView1.TabIndex = 9;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            this.pnlSidebar.BackColor = System.Drawing.Color.Azure;
+            this.pnlSidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSidebar.Controls.Add(this.imgHome);
+            this.pnlSidebar.Controls.Add(this.panel2);
+            this.pnlSidebar.Controls.Add(this.imgLogout);
+            this.pnlSidebar.Controls.Add(this.imgBooks);
+            this.pnlSidebar.Controls.Add(this.imgLogo);
+            this.pnlSidebar.Location = new System.Drawing.Point(-5, -1);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.Size = new System.Drawing.Size(74, 563);
+            this.pnlSidebar.TabIndex = 10;
+            this.pnlSidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSidebar_Paint);
             // 
-            // columnHeader1
+            // imgHome
             // 
-            columnHeader1.Text = "Book Name";
-            columnHeader1.Width = 200;
+            this.imgHome.Image = global::LMS.Properties.Resources.home;
+            this.imgHome.Location = new System.Drawing.Point(17, 141);
+            this.imgHome.Name = "imgHome";
+            this.imgHome.Size = new System.Drawing.Size(40, 40);
+            this.imgHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgHome.TabIndex = 4;
+            this.imgHome.TabStop = false;
+            this.imgHome.Click += new System.EventHandler(this.lblHome_Click);
             // 
-            // columnHeader2
+            // panel2
             // 
-            columnHeader2.Text = "Author";
-            columnHeader2.TextAlign = HorizontalAlignment.Center;
-            columnHeader2.Width = 200;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.panel2.Controls.Add(this.imgSearch);
+            this.panel2.Location = new System.Drawing.Point(-1, 199);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(75, 60);
+            this.panel2.TabIndex = 24;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // columnHeader3
+            // imgSearch
             // 
-            columnHeader3.Text = "Genre";
-            columnHeader3.TextAlign = HorizontalAlignment.Center;
-            columnHeader3.Width = 200;
+            this.imgSearch.Image = global::LMS.Properties.Resources.search;
+            this.imgSearch.Location = new System.Drawing.Point(18, 10);
+            this.imgSearch.Name = "imgSearch";
+            this.imgSearch.Size = new System.Drawing.Size(40, 40);
+            this.imgSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgSearch.TabIndex = 12;
+            this.imgSearch.TabStop = false;
             // 
-            // columnHeader4
+            // imgLogout
             // 
-            columnHeader4.Text = "ISBN";
-            columnHeader4.TextAlign = HorizontalAlignment.Center;
-            columnHeader4.Width = 160;
+            this.imgLogout.Image = global::LMS.Properties.Resources.logout;
+            this.imgLogout.Location = new System.Drawing.Point(17, 510);
+            this.imgLogout.Name = "imgLogout";
+            this.imgLogout.Size = new System.Drawing.Size(40, 40);
+            this.imgLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogout.TabIndex = 10;
+            this.imgLogout.TabStop = false;
+            this.imgLogout.Click += new System.EventHandler(this.lblLogout_Click);
+            // 
+            // imgBooks
+            // 
+            this.imgBooks.Image = global::LMS.Properties.Resources.books;
+            this.imgBooks.Location = new System.Drawing.Point(17, 281);
+            this.imgBooks.Name = "imgBooks";
+            this.imgBooks.Size = new System.Drawing.Size(40, 40);
+            this.imgBooks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgBooks.TabIndex = 8;
+            this.imgBooks.TabStop = false;
+            this.imgBooks.Click += new System.EventHandler(this.lblBooks_Click);
+            // 
+            // imgLogo
+            // 
+            this.imgLogo.Image = global::LMS.Properties.Resources.liblogo1;
+            this.imgLogo.Location = new System.Drawing.Point(8, 9);
+            this.imgLogo.Name = "imgLogo";
+            this.imgLogo.Size = new System.Drawing.Size(60, 60);
+            this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogo.TabIndex = 0;
+            this.imgLogo.TabStop = false;
             // 
             // frmSearch
             // 
-            AutoScaleDimensions = new SizeF(8F, 16F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(199, 229, 255);
-            ClientSize = new Size(1084, 561);
-            Controls.Add(ListView);
-            Controls.Add(listView1);
-            Controls.Add(cmbCategories);
-            Controls.Add(pictureBox1);
-            Controls.Add(txtSearch);
-            Controls.Add(pnlSidebar);
-            Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            Name = "frmSearch";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Search";
-            FormClosed += frmSearch_FormClosed;
-            Load += frmSearch_Load;
-            pnlSidebar.ResumeLayout(false);
-            pnlSidebar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgLogout).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgBooks).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgSearch).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgHome).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgDashboard).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgLogo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.pnlSidebar);
+            this.Controls.Add(this.ListView);
+            this.Controls.Add(this.cmbCategories);
+            this.Controls.Add(this.txtSearch);
+            this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "frmSearch";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Search";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSearch_FormClosed);
+            this.Load += new System.EventHandler(this.frmSearch_Load);
+            this.pnlSidebar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgBooks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
-
-        private Panel pnlSidebar;
-        private Label lblLogout;
-        private PictureBox imgLogout;
-        private Label lblBooks;
-        private PictureBox imgBooks;
-        private Label lblSearch;
-        private PictureBox imgSearch;
-        private Label lblHome;
-        private PictureBox imgHome;
-        private Label lblDashboard;
-        private PictureBox imgDashboard;
-        private Label lblLogo;
-        private PictureBox imgLogo;
         private TextBox txtSearch;
-        private PictureBox pictureBox1;
         private ComboBox cmbCategories;
 
         private ListView ListView;
@@ -371,12 +231,13 @@
         private ColumnHeader lvwAuthor;
         private ColumnHeader lvwAutho;
         private ColumnHeader lvwGenre;
-
-        private ListView listView1;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
         private ColumnHeader lvwID;
+        private Panel pnlSidebar;
+        private Panel panel2;
+        private PictureBox imgHome;
+        private PictureBox imgSearch;
+        private PictureBox imgLogout;
+        private PictureBox imgBooks;
+        private PictureBox imgLogo;
     }
 }

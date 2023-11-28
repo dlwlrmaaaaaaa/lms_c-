@@ -15,18 +15,13 @@ namespace LMS
         {
             InitializeComponent();
             this.admin_id = admin_id;
-
+            this.ShowInTaskbar = false;
         }
         MySqlConnection myconn;
         MySqlCommand cmd;
         MySqlDataReader rdr;
         string con = "Server=localhost;Database=library;Uid=root;Pwd=";
-        private void frmIssueBook_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
 
-
-        }
         private void frmIssueBook_Load(object sender, EventArgs e)
         {
             myconn = new MySqlConnection(con);
@@ -86,12 +81,6 @@ namespace LMS
                 MessageBox.Show("Issue Books: " + e.Message);
             }
         }
-        private void lblLogout_Click(object sender, EventArgs e)
-        {
-            frmLogin login = new frmLogin();
-            login.Show();
-            this.Hide();
-        }
         private void btnDeny_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show("Click yes to confirm.", "Denying...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -135,7 +124,7 @@ namespace LMS
         DateTime date = DateTime.Now;
         private void btnIssue_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("Click yes to confirm.", "Denying...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show("Click yes to confirm.", "Confirming...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DialogResult.Yes == res)
             {
                 ListViewItem selectedItem = listView1.SelectedItems[0];
@@ -260,9 +249,15 @@ namespace LMS
                 return;
             }
         }
-        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+
+        private void listView1_MouseDoubleClick(object sender, EventArgs e)
         {
             Enable();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -279,13 +274,6 @@ namespace LMS
             {
                 DisableButton();
             }
-        }
-
-        private void lblDashboard_Click(object sender, EventArgs e)
-        {
-            frmDashboard dashboard = new frmDashboard(admin_id);
-            dashboard.Show();
-            this.Hide();
         }
     }
 }

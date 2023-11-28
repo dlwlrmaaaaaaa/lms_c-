@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace LMS
 {
@@ -19,6 +20,7 @@ namespace LMS
         public frmAddBooks()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
         }
         MySqlConnection myconn;
         MySqlCommand cmd;
@@ -73,58 +75,56 @@ namespace LMS
             {
                 MessageBox.Show("An error occured: " + ex.Message);
             }
-
+        }
+        private bool AreTextboxesEmpty()
+        {
+            if (string.IsNullOrEmpty(txtAuthor.Text) ||
+                string.IsNullOrEmpty(txtTitle.Text) ||
+                string.IsNullOrEmpty(txtGenre.Text) ||
+                string.IsNullOrEmpty(txtISBN.Text) ||
+                string.IsNullOrEmpty(txtCopies.Text) ||
+                string.IsNullOrEmpty(txtSummary.Text))
+            {
+                return true;
+            }
+            return false;
         }
 
         private void btnAddBook_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Click Yes to Confirm", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (picBook.Image != null)
+            if (AreTextboxesEmpty())
             {
-                if (result == DialogResult.Yes)
-                {
-                    InsertBook(ConvertImageToBytes(picBook.Image));
-                    txtAuthor.Text = "";
-                    txtTitle.Text = "";
-                    txtGenre.Text = "";
-                    txtISBN.Text = "";
-                    txtCopies.Text = "";
-                    txtSummary.Text = "";
-                    picBook.Image = null;
-                    MessageBox.Show("Books Added!");
-                }
-                else
-                {
-                    return;
-                }
+                MessageBox.Show("Please fill in all the required fields.");
+                return;
             }
             else
             {
-                MessageBox.Show("Please select an image for the book.");
+                DialogResult result = MessageBox.Show("Click Yes to Confirm", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (picBook.Image != null)
+                {
+                    if (result == DialogResult.Yes)
+                    {
+                        InsertBook(ConvertImageToBytes(picBook.Image));
+                        txtAuthor.Text = "";
+                        txtTitle.Text = "";
+                        txtGenre.Text = "";
+                        txtISBN.Text = "";
+                        txtCopies.Text = "";
+                        txtSummary.Text = "";
+                        picBook.Image = null;
+                        MessageBox.Show("Books Added!");
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select an image for the book.");
+                }
             }
-
-
-        }
-
-
-        private void lblDashboard_Click(object sender, EventArgs e)
-        {
-            frmDashboard dashboard = new frmDashboard(admin_id);
-            dashboard.Show();
-            this.Hide();
-        }
-
-        private void lblLogout_Click(object sender, EventArgs e)
-        {
-            frmLogin login = new frmLogin();
-            login.Show();
-            this.Hide();
-        }
-
-        private void frmAddBooks_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -132,6 +132,26 @@ namespace LMS
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to cancel?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                txtAuthor.Text = "";
+                txtTitle.Text = "";
+                txtGenre.Text = "";
+                txtISBN.Text = "";
+                txtCopies.Text = "";
+                txtSummary.Text = "";
+                picBook.Image = null;
             }
         }
     }

@@ -134,6 +134,16 @@ namespace LMS
         {
             return txtStudentNum.Text;
         }
+        private void DrawPanelBorder(Graphics g, Panel panel)
+        {
+            Rectangle r = new Rectangle(0, 0, panel.ClientRectangle.Width - 1, panel.ClientRectangle.Height - 1);
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawRectangle(p, r);
+        }
 
+        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlSidebar);
+        }
     }
 }

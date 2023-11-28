@@ -1785,19 +1785,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\aujrc\\.nuget\\packages\\": {}
+    "C:\\Users\\Dan Edward\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Project\\LMS_C (2)\\LMS_C\\LMS\\LMS.csproj",
+      "projectUniqueName": "C:\\Users\\Dan Edward\\source\\repos\\newLMSC\\lms_c-\\LMS_C\\LMS\\LMS.csproj",
       "projectName": "LMS",
-      "projectPath": "C:\\Project\\LMS_C (2)\\LMS_C\\LMS\\LMS.csproj",
-      "packagesPath": "C:\\Users\\aujrc\\.nuget\\packages\\",
-      "outputPath": "C:\\Project\\LMS_C (2)\\LMS_C\\LMS\\obj\\",
+      "projectPath": "C:\\Users\\Dan Edward\\source\\repos\\newLMSC\\lms_c-\\LMS_C\\LMS\\LMS.csproj",
+      "packagesPath": "C:\\Users\\Dan Edward\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dan Edward\\source\\repos\\newLMSC\\lms_c-\\LMS_C\\LMS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\aujrc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dan Edward\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1847,7 +1847,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

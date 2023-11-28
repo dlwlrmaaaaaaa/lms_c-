@@ -29,299 +29,229 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMyBooks));
-            pnlSidebar = new Panel();
-            lblSearch = new Label();
-            imgSearch = new PictureBox();
-            lblLogout = new Label();
-            imgLogout = new PictureBox();
-            lblBooks = new Label();
-            imgBooks = new PictureBox();
-            lblHome = new Label();
-            imgHome = new PictureBox();
-            lblDashboard = new Label();
-            imgDashboard = new PictureBox();
-            lblLogo = new Label();
-            imgLogo = new PictureBox();
-            label7 = new Label();
-            btnReturn = new Button();
-            listView1 = new ListView();
-            lvwBorrowID = new ColumnHeader();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
-            columnHeader4 = new ColumnHeader();
-            columnHeader5 = new ColumnHeader();
-            pnlSidebar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgSearch).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgLogout).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgBooks).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgHome).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgDashboard).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgLogo).BeginInit();
-            SuspendLayout();
-            // 
-            // pnlSidebar
-            // 
-            pnlSidebar.BackColor = Color.Azure;
-            pnlSidebar.BorderStyle = BorderStyle.FixedSingle;
-            pnlSidebar.Controls.Add(lblSearch);
-            pnlSidebar.Controls.Add(imgSearch);
-            pnlSidebar.Controls.Add(lblLogout);
-            pnlSidebar.Controls.Add(imgLogout);
-            pnlSidebar.Controls.Add(lblBooks);
-            pnlSidebar.Controls.Add(imgBooks);
-            pnlSidebar.Controls.Add(lblHome);
-            pnlSidebar.Controls.Add(imgHome);
-            pnlSidebar.Controls.Add(lblDashboard);
-            pnlSidebar.Controls.Add(imgDashboard);
-            pnlSidebar.Controls.Add(lblLogo);
-            pnlSidebar.Controls.Add(imgLogo);
-            pnlSidebar.Location = new Point(-1, -1);
-            pnlSidebar.Name = "pnlSidebar";
-            pnlSidebar.Size = new Size(234, 563);
-            pnlSidebar.TabIndex = 2;
-            // 
-            // lblSearch
-            // 
-            lblSearch.AutoSize = true;
-            lblSearch.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSearch.ForeColor = SystemColors.ControlDarkDark;
-            lblSearch.Location = new Point(72, 302);
-            lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(62, 18);
-            lblSearch.TabIndex = 13;
-            lblSearch.Text = "Search";
-            lblSearch.Click += lblSearch_Click;
-            // 
-            // imgSearch
-            // 
-            imgSearch.Image = Properties.Resources.search;
-            imgSearch.Location = new Point(32, 296);
-            imgSearch.Name = "imgSearch";
-            imgSearch.Size = new Size(34, 30);
-            imgSearch.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgSearch.TabIndex = 12;
-            imgSearch.TabStop = false;
-            // 
-            // lblLogout
-            // 
-            lblLogout.AutoSize = true;
-            lblLogout.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblLogout.Location = new Point(93, 512);
-            lblLogout.Name = "lblLogout";
-            lblLogout.Size = new Size(64, 18);
-            lblLogout.TabIndex = 11;
-            lblLogout.Text = "Logout";
-            lblLogout.Click += lblLogout_Click;
-            // 
-            // imgLogout
-            // 
-            imgLogout.Image = Properties.Resources.logout;
-            imgLogout.Location = new Point(179, 506);
-            imgLogout.Name = "imgLogout";
-            imgLogout.Size = new Size(34, 30);
-            imgLogout.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgLogout.TabIndex = 10;
-            imgLogout.TabStop = false;
-            // 
-            // lblBooks
-            // 
-            lblBooks.AutoSize = true;
-            lblBooks.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblBooks.ForeColor = SystemColors.ActiveCaptionText;
-            lblBooks.Location = new Point(72, 344);
-            lblBooks.Name = "lblBooks";
-            lblBooks.Size = new Size(85, 18);
-            lblBooks.TabIndex = 9;
-            lblBooks.Text = "My Books";
-            // 
-            // imgBooks
-            // 
-            imgBooks.Image = Properties.Resources.books;
-            imgBooks.Location = new Point(32, 338);
-            imgBooks.Name = "imgBooks";
-            imgBooks.Size = new Size(34, 30);
-            imgBooks.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgBooks.TabIndex = 8;
-            imgBooks.TabStop = false;
-            // 
-            // lblHome
-            // 
-            lblHome.AutoSize = true;
-            lblHome.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblHome.ForeColor = SystemColors.ControlDarkDark;
-            lblHome.Location = new Point(71, 259);
-            lblHome.Name = "lblHome";
-            lblHome.Size = new Size(55, 18);
-            lblHome.TabIndex = 5;
-            lblHome.Text = "Home";
-            lblHome.Click += lblHome_Click;
-            // 
-            // imgHome
-            // 
-            imgHome.Image = Properties.Resources.home;
-            imgHome.Location = new Point(30, 253);
-            imgHome.Name = "imgHome";
-            imgHome.Size = new Size(34, 30);
-            imgHome.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgHome.TabIndex = 4;
-            imgHome.TabStop = false;
-            // 
-            // lblDashboard
-            // 
-            lblDashboard.AutoSize = true;
-            lblDashboard.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDashboard.ForeColor = SystemColors.ControlDarkDark;
-            lblDashboard.Location = new Point(71, 215);
-            lblDashboard.Name = "lblDashboard";
-            lblDashboard.Size = new Size(95, 18);
-            lblDashboard.TabIndex = 3;
-            lblDashboard.Text = "Dashboard";
-            // 
-            // imgDashboard
-            // 
-            imgDashboard.Image = Properties.Resources.dashboard;
-            imgDashboard.Location = new Point(30, 208);
-            imgDashboard.Name = "imgDashboard";
-            imgDashboard.Size = new Size(34, 30);
-            imgDashboard.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgDashboard.TabIndex = 2;
-            imgDashboard.TabStop = false;
-            // 
-            // lblLogo
-            // 
-            lblLogo.AutoSize = true;
-            lblLogo.Font = new Font("Viner Hand ITC", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lblLogo.Location = new Point(24, 95);
-            lblLogo.Name = "lblLogo";
-            lblLogo.Size = new Size(168, 44);
-            lblLogo.TabIndex = 1;
-            lblLogo.Text = "UrbanRead";
-            // 
-            // imgLogo
-            // 
-            imgLogo.Image = Properties.Resources.liblogo1;
-            imgLogo.Location = new Point(71, 22);
-            imgLogo.Name = "imgLogo";
-            imgLogo.Size = new Size(79, 70);
-            imgLogo.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgLogo.TabIndex = 0;
-            imgLogo.TabStop = false;
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvwBorrowID = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.imgHome = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.imgBooks = new System.Windows.Forms.PictureBox();
+            this.imgSearch = new System.Windows.Forms.PictureBox();
+            this.imgLogout = new System.Windows.Forms.PictureBox();
+            this.imgLogo = new System.Windows.Forms.PictureBox();
+            this.btnLost = new System.Windows.Forms.Button();
+            this.pnlSidebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgBooks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
+            this.SuspendLayout();
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Modern No. 20", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(269, 22);
-            label7.Name = "label7";
-            label7.Size = new Size(119, 25);
-            label7.TabIndex = 21;
-            label7.Text = "My Books";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(75, 19);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(119, 25);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "My Books";
             // 
             // btnReturn
             // 
-            btnReturn.Location = new Point(618, 500);
-            btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(246, 49);
-            btnReturn.TabIndex = 23;
-            btnReturn.Text = "Return Book";
-            btnReturn.UseVisualStyleBackColor = true;
-            btnReturn.Click += btnReturn_Click;
+            this.btnReturn.Location = new System.Drawing.Point(272, 506);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(200, 45);
+            this.btnReturn.TabIndex = 23;
+            this.btnReturn.Text = "Return Book";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { lvwBorrowID, columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
-            listView1.FullRowSelect = true;
-            listView1.GridLines = true;
-            listView1.Location = new Point(276, 60);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(887, 434);
-            listView1.TabIndex = 24;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
-            listView1.MouseDoubleClick += listView1_MouseDoubleClick;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwBorrowID,
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listView1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.Location = new System.Drawing.Point(82, 57);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(790, 434);
+            this.listView1.TabIndex = 24;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // lvwBorrowID
             // 
-            lvwBorrowID.Text = "Borrow ID";
-            lvwBorrowID.TextAlign = HorizontalAlignment.Center;
-            lvwBorrowID.Width = 100;
+            this.lvwBorrowID.Text = "Borrow ID";
+            this.lvwBorrowID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lvwBorrowID.Width = 100;
             // 
             // columnHeader1
             // 
-            columnHeader1.Text = "Book ID";
-            columnHeader1.Width = 80;
+            this.columnHeader1.Text = "Book ID";
+            this.columnHeader1.Width = 80;
             // 
             // columnHeader2
             // 
-            columnHeader2.Text = "Book Title";
-            columnHeader2.TextAlign = HorizontalAlignment.Center;
-            columnHeader2.Width = 250;
+            this.columnHeader2.Text = "Book Title";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 250;
             // 
             // columnHeader3
             // 
-            columnHeader3.Text = "Copies";
-            columnHeader3.TextAlign = HorizontalAlignment.Center;
-            columnHeader3.Width = 100;
+            this.columnHeader3.Text = "Copies";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
-            columnHeader4.Text = "Borrow Date";
-            columnHeader4.TextAlign = HorizontalAlignment.Center;
-            columnHeader4.Width = 250;
+            this.columnHeader4.Text = "Borrow Date";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 250;
             // 
             // columnHeader5
             // 
-            columnHeader5.Text = "Due Date";
-            columnHeader5.TextAlign = HorizontalAlignment.Center;
-            columnHeader5.Width = 200;
+            this.columnHeader5.Text = "Due Date";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader5.Width = 200;
+            // 
+            // pnlSidebar
+            // 
+            this.pnlSidebar.BackColor = System.Drawing.Color.Azure;
+            this.pnlSidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSidebar.Controls.Add(this.imgHome);
+            this.pnlSidebar.Controls.Add(this.panel2);
+            this.pnlSidebar.Controls.Add(this.imgSearch);
+            this.pnlSidebar.Controls.Add(this.imgLogout);
+            this.pnlSidebar.Controls.Add(this.imgLogo);
+            this.pnlSidebar.Location = new System.Drawing.Point(-5, -1);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.Size = new System.Drawing.Size(74, 563);
+            this.pnlSidebar.TabIndex = 25;
+            this.pnlSidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSidebar_Paint);
+            // 
+            // imgHome
+            // 
+            this.imgHome.Image = global::LMS.Properties.Resources.home;
+            this.imgHome.Location = new System.Drawing.Point(17, 141);
+            this.imgHome.Name = "imgHome";
+            this.imgHome.Size = new System.Drawing.Size(40, 40);
+            this.imgHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgHome.TabIndex = 4;
+            this.imgHome.TabStop = false;
+            this.imgHome.Click += new System.EventHandler(this.lblHome_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.panel2.Controls.Add(this.imgBooks);
+            this.panel2.Location = new System.Drawing.Point(-1, 272);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(75, 60);
+            this.panel2.TabIndex = 24;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // imgBooks
+            // 
+            this.imgBooks.Image = global::LMS.Properties.Resources.books;
+            this.imgBooks.Location = new System.Drawing.Point(18, 10);
+            this.imgBooks.Name = "imgBooks";
+            this.imgBooks.Size = new System.Drawing.Size(40, 40);
+            this.imgBooks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgBooks.TabIndex = 8;
+            this.imgBooks.TabStop = false;
+            // 
+            // imgSearch
+            // 
+            this.imgSearch.Image = global::LMS.Properties.Resources.search;
+            this.imgSearch.Location = new System.Drawing.Point(17, 208);
+            this.imgSearch.Name = "imgSearch";
+            this.imgSearch.Size = new System.Drawing.Size(40, 40);
+            this.imgSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgSearch.TabIndex = 12;
+            this.imgSearch.TabStop = false;
+            this.imgSearch.Click += new System.EventHandler(this.lblSearch_Click);
+            // 
+            // imgLogout
+            // 
+            this.imgLogout.Image = global::LMS.Properties.Resources.logout;
+            this.imgLogout.Location = new System.Drawing.Point(17, 510);
+            this.imgLogout.Name = "imgLogout";
+            this.imgLogout.Size = new System.Drawing.Size(40, 40);
+            this.imgLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogout.TabIndex = 10;
+            this.imgLogout.TabStop = false;
+            this.imgLogout.Click += new System.EventHandler(this.lblLogout_Click);
+            // 
+            // imgLogo
+            // 
+            this.imgLogo.Image = global::LMS.Properties.Resources.liblogo1;
+            this.imgLogo.Location = new System.Drawing.Point(8, 9);
+            this.imgLogo.Name = "imgLogo";
+            this.imgLogo.Size = new System.Drawing.Size(60, 60);
+            this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogo.TabIndex = 0;
+            this.imgLogo.TabStop = false;
+            // 
+            // btnLost
+            // 
+            this.btnLost.Location = new System.Drawing.Point(485, 505);
+            this.btnLost.Name = "btnLost";
+            this.btnLost.Size = new System.Drawing.Size(200, 45);
+            this.btnLost.TabIndex = 26;
+            this.btnLost.Text = "Lost Book";
+            this.btnLost.UseVisualStyleBackColor = true;
+            this.btnLost.Click += new System.EventHandler(this.btnLost_Click);
             // 
             // frmMyBooks
             // 
-            AutoScaleDimensions = new SizeF(9F, 16F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(199, 229, 255);
-            ClientSize = new Size(1220, 561);
-            Controls.Add(listView1);
-            Controls.Add(btnReturn);
-            Controls.Add(label7);
-            Controls.Add(pnlSidebar);
-            Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "frmMyBooks";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Urban Read";
-            FormClosed += frmMyBooks_FormClosed;
-            Load += frmMyBooks_Load;
-            pnlSidebar.ResumeLayout(false);
-            pnlSidebar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgSearch).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgLogout).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgBooks).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgHome).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgDashboard).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgLogo).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.btnLost);
+            this.Controls.Add(this.pnlSidebar);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.btnReturn);
+            this.Controls.Add(this.label7);
+            this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "frmMyBooks";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Urban Read";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMyBooks_FormClosed);
+            this.Load += new System.EventHandler(this.frmMyBooks_Load);
+            this.pnlSidebar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgBooks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
-
-        private Panel pnlSidebar;
-        private Label lblSearch;
-        private PictureBox imgSearch;
-        private Label lblLogout;
-        private PictureBox imgLogout;
-        private Label lblBooks;
-        private PictureBox imgBooks;
-        private Label lblHome;
-        private PictureBox imgHome;
-        private Label lblDashboard;
-        private PictureBox imgDashboard;
-        private Label lblLogo;
-        private PictureBox imgLogo;
         private Label label7;
         private Button btnReturn;
         private ListView listView1;
@@ -331,5 +261,13 @@
         private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
         private ColumnHeader lvwBorrowID;
+        private Panel pnlSidebar;
+        private Panel panel2;
+        private PictureBox imgHome;
+        private PictureBox imgSearch;
+        private PictureBox imgLogout;
+        private PictureBox imgBooks;
+        private PictureBox imgLogo;
+        private Button btnLost;
     }
 }

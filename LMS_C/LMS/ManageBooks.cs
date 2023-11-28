@@ -19,7 +19,7 @@ namespace LMS
         {
             InitializeComponent();
             this.admin_id = admin_id;
-
+            this.ShowInTaskbar = false;
         }
         MySqlConnection myconn;
         MySqlCommand cmd;
@@ -220,26 +220,6 @@ namespace LMS
 
         private void frmManageBooks_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
-        }
-
-        private void lblLogout_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                frmLogin login = new frmLogin();
-                login.Show();
-                this.Hide();
-            }
-        }
-
-        private void lblDashboard_Click(object sender, EventArgs e)
-        {
-           frmDashboard dashboard = new frmDashboard(admin_id);
-            dashboard.Show();
-            this.Hide();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -251,6 +231,11 @@ namespace LMS
                 textBoxClear();
                 Disable();
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

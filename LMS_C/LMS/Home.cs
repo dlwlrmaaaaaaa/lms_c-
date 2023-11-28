@@ -139,9 +139,34 @@ namespace LMS
             {
                 int bookIndex = int.Parse(pictureBox.Tag.ToString());
                 DisplayBookInformation(bookIndex, table);
-                frmBorrowBook borrow = new frmBorrowBook(user_id, book_id, Title, Author, Genre, ISBN, Summary, Copies, picBooks[bookIndex].Image);
-                borrow.Show();
-                this.Hide();
+                Form formBackground = new Form();
+                try
+                {
+                    formBackground.StartPosition = FormStartPosition.Manual;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.Opacity = .50d;
+                    formBackground.BackColor = Color.Black;
+                    formBackground.WindowState = FormWindowState.Maximized;
+                    formBackground.Location = this.Location;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
+
+                    using (frmBorrowBook frmBorrowBook = new frmBorrowBook(user_id, book_id, Title, Author, Genre, ISBN, Summary, Copies, picBooks[bookIndex].Image))
+                    {
+                        frmBorrowBook.Owner = formBackground;
+                        frmBorrowBook.ShowDialog();
+                        frmBorrowBook.ShowInTaskbar = false;
+                    }
+                    formBackground.TopMost = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    formBackground.Dispose();
+                }
             }
         }
         private void displayName()
@@ -171,9 +196,6 @@ namespace LMS
             }
         }
 
-
-
-
         private void lblSearch_Click(object sender, EventArgs e)
         {
             frmSearch search = new frmSearch(user_id);
@@ -192,9 +214,14 @@ namespace LMS
         }      
         private void lblLogout_Click(object sender, EventArgs e)
         {
-            frmLogin login = new frmLogin();
-            login.Show();
-            this.Hide();
+            DialogResult result = MessageBox.Show("Are you sure you want to Logout?", "Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                frmLogin login = new frmLogin();
+                login.Show();
+                this.Hide();
+            }
         }
 
         private void lblBooks_Click(object sender, EventArgs e)
@@ -202,6 +229,38 @@ namespace LMS
             frmMyBooks myBooks = new frmMyBooks(user_id);
             myBooks.Show();
             this.Hide();
+        }
+
+        private void DrawPanelBorder(Graphics g, Panel panel)
+        {
+            Rectangle r = new Rectangle(0, 0, panel.ClientRectangle.Width - 1, panel.ClientRectangle.Height - 1);
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawRectangle(p, r);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, panel1);
+        }
+
+        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlSidebar);
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, panel2);
+        }
+
+        private void pnlBook1_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlBook1);
+        }
+
+        private void pnlBook2_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlBook2);
         }
     }
 }

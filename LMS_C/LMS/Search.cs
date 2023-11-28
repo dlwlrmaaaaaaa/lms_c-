@@ -229,9 +229,34 @@ namespace LMS
                     {
                         DisplayBookInformation(selectedIndex, table);
 
-                        frmBorrowBook borrow = new frmBorrowBook(user_id, book_id, Title, Author, Genre, ISBN, Summary, Copies, picBook.Image);
-                        borrow.Show();
-                        this.Hide();
+                        Form formBackground = new Form();
+                        try
+                        {
+                            formBackground.StartPosition = FormStartPosition.Manual;
+                            formBackground.FormBorderStyle = FormBorderStyle.None;
+                            formBackground.Opacity = .50d;
+                            formBackground.BackColor = Color.Black;
+                            formBackground.WindowState = FormWindowState.Maximized;
+                            formBackground.Location = this.Location;
+                            formBackground.ShowInTaskbar = false;
+                            formBackground.Show();
+
+                            using (frmBorrowBook frmBorrowBook = new frmBorrowBook(user_id, book_id, Title, Author, Genre, ISBN, Summary, Copies, picBook.Image))
+                            {
+                                frmBorrowBook.Owner = formBackground;
+                                frmBorrowBook.ShowDialog();
+                                frmBorrowBook.ShowInTaskbar = false;
+                            }
+                            formBackground.TopMost = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            formBackground.Dispose();
+                        }
                     }
                 }
             }
@@ -278,6 +303,22 @@ namespace LMS
             frmSearch search = new frmSearch(user_id);
             search.Show();
             this.Hide();
+        }
+        private void DrawPanelBorder(Graphics g, Panel panel)
+        {
+            Rectangle r = new Rectangle(0, 0, panel.ClientRectangle.Width - 1, panel.ClientRectangle.Height - 1);
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawRectangle(p, r);
+        }
+
+        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlSidebar);
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, panel2);
         }
     }
 }

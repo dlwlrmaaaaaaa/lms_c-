@@ -91,8 +91,6 @@ namespace LMS
 
         }
 
-
-
         DateTime date = DateTime.Now;
         private void Return()
         {
@@ -162,9 +160,14 @@ namespace LMS
 
         private void lblLogout_Click(object sender, EventArgs e)
         {
-            frmLogin login = new frmLogin();
-            login.Show();
-            this.Hide();
+            DialogResult result = MessageBox.Show("Are you sure you want to Logout?", "Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                frmLogin login = new frmLogin();
+                login.Show();
+                this.Hide();
+            }
         }
 
         private void frmMyBooks_FormClosed(object sender, FormClosedEventArgs e)
@@ -188,6 +191,26 @@ namespace LMS
             {
                 btnReturn.Enabled = false;
             }
+        }
+
+        private void DrawPanelBorder(Graphics g, Panel panel)
+        {
+            Rectangle r = new Rectangle(0, 0, panel.ClientRectangle.Width - 1, panel.ClientRectangle.Height - 1);
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawRectangle(p, r);
+        }
+        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlSidebar);
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, panel2);
+        }
+
+        private void btnLost_Click(object sender, EventArgs e)
+        {
 
         }
     }

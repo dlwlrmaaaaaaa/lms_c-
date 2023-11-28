@@ -32,6 +32,7 @@ namespace LMS
             picBook.Image = pic;
 
             this.txtStudentNum = new TextBox();
+            this.ShowInTaskbar = false;
         }
         MySqlConnection myconn;
         MySqlCommand cmd;
@@ -46,11 +47,6 @@ namespace LMS
             //  getStudentNumber();
 
         }
-
-        private void frmBorrowBook_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show("Are you sure, do you want to cancel?", "Cancelling...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -60,9 +56,7 @@ namespace LMS
             }
             else
             {
-                frmHome home = new frmHome(user_id);
-                home.Show();
-                this.Hide();
+                this.Close();
             }
         }
 
@@ -102,10 +96,7 @@ namespace LMS
                 if (txtCopies.Text != "0")
                 {
                     BorrowBook();
-                    MessageBox.Show("Successfull! Babye!");
-                    frmHome home = new frmHome(user_id);
-                    home.Show();
-                    this.Hide();
+                    MessageBox.Show("Successfull!");
                 }
                 else
                 {
@@ -118,42 +109,9 @@ namespace LMS
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private void lblHome_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            frmHome home = new frmHome(user_id);
-            home.Show();
-            this.Hide();
-        }
-        private void lblSearch_Click(object sender, EventArgs e)
-        {
-            frmSearch search = new frmSearch(user_id);
-            search.Show();
-            this.Hide();
-        }
-        private void lblBooks_Click(object sender, EventArgs e)
-        {
-            frmMyBooks myBooks = new frmMyBooks(user_id);
-            myBooks.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace LMS
         public frmUsers()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
         }
         MySqlConnection myconn;
         MySqlCommand cmd;
@@ -77,11 +78,19 @@ namespace LMS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            addAccount();
-            Disable();
-            btnNew.Enabled = true;
-            textBoxClear();
-            showUsers(lvwAccounts);
+            if (AreTextboxesEmpty())
+            {
+                MessageBox.Show("Please fill in all the required fields.");
+                return;
+            } 
+            else
+            {
+                addAccount();
+                Disable();
+                btnNew.Enabled = true;
+                textBoxClear();
+                showUsers(lvwAccounts);
+            }
         }
 
         public void GetNextId()
@@ -139,10 +148,20 @@ namespace LMS
                 MessageBox.Show("Error: " + e.Message);
             }
         }
+        private bool AreTextboxesEmpty()
+        {
+            if (string.IsNullOrEmpty(txtxStudNo.Text) ||
+                string.IsNullOrEmpty(txtName.Text) ||
+                string.IsNullOrEmpty(txtEmail.Text) ||
+                string.IsNullOrEmpty(txtPassword.Text))
+            {
+                return true;
+            }
+            return false;
+        }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-
             GetNextId();
             txtxStudNo.Enabled = true;
             txtName.Enabled = true;
@@ -155,9 +174,13 @@ namespace LMS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            textBoxClear();
-            btnNew.Enabled = true;
-            Disable();
+            DialogResult result = MessageBox.Show("Are you sure you want to cancel?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                textBoxClear();
+                btnNew.Enabled = true;
+                Disable();
+            }
         }
 
         private void lvwAccounts_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -279,20 +302,12 @@ namespace LMS
                 btnEdit.Enabled = false;
                 btnNew.Enabled = true;
                 textBoxClear();
-
             }
         }
 
-        private void frmUsers_FormClosed(object sender, FormClosedEventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
-
-        private void lblLogout_Click(object sender, EventArgs e)
-        {
-            frmLogin login = new frmLogin();
-            login.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

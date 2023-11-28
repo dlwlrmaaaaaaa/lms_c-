@@ -18,15 +18,16 @@ namespace LMS.Resources
             InitializeComponent();
             this.admin_id = admin_id;
         }
+
         MySqlConnection myconn;
         string con = "Server=localhost;Database=library;Uid=root;Pwd=;";
         MySqlCommand cmd;
         MySqlDataReader rdr;
+
         private void Dashboard_Load(object sender, EventArgs e)
         {
             UpdateRowCountLabel();
             displayAdminName();
-            showUsers(lvwList);
         }
         private void UpdateRowCountLabel()
         {
@@ -64,47 +65,6 @@ namespace LMS.Resources
                 MessageBox.Show("An error occurred while counting rows: " + ex.Message);
             }
         }
-
-        private void showUsers(ListView listview)
-        {
-            try
-            {
-                using (MySqlConnection myconn = new MySqlConnection(con))
-                {
-                    myconn.Open();
-                    string sql = "SELECT student_number, bktitle, full_name, copies, borrow_date, due_date, bk_return_date FROM borrower_return_record INNER JOIN users ON users.user_id = borrower_return_record.user_id";
-
-                    lvwList.Items.Clear();
-                    using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
-                    {
-                        using (MySqlDataReader rdr = cmd.ExecuteReader())
-                        {
-                         
-                                while (rdr.Read())
-                                {
-                                if (rdr["bk_return_date"] is DBNull)
-                                {
-                                    ListViewItem item = new ListViewItem(rdr["student_number"].ToString());
-                                    item.SubItems.Add(rdr["full_name"].ToString());
-                                    item.SubItems.Add(rdr["bktitle"].ToString());
-                                    item.SubItems.Add(rdr["copies"].ToString());
-                                    item.SubItems.Add(rdr["borrow_date"].ToString());
-                                    item.SubItems.Add(rdr["due_date"].ToString());
-                                    listview.Items.Add(item);
-                                }
-                                   
-                                }
-                            
-                        }
-                        myconn.Close();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-            }
-        }
         private void displayAdminName()
         {
             try
@@ -133,43 +93,214 @@ namespace LMS.Resources
                 MessageBox.Show("displayAdminName:  " + e.Message);
             }
         }
-        private void lblSearch_Click(object sender, EventArgs e)
-        {
-            return;
-        }
+
         private void pnlUsers_Click(object sender, EventArgs e)
         {
-            frmUsers users = new frmUsers();
-            users.Show();
-            this.Hide();
+            Form formBackground = new Form();
+            try
+            {
+                formBackground.StartPosition = FormStartPosition.Manual;
+                formBackground.FormBorderStyle = FormBorderStyle.None;
+                formBackground.Opacity = .50d;
+                formBackground.BackColor = Color.Black;
+                formBackground.WindowState = FormWindowState.Maximized;
+                formBackground.Location = this.Location;
+                formBackground.ShowInTaskbar = false;
+                formBackground.Show();
+
+                using (frmUsers frmUsers = new frmUsers())
+                {
+                    frmUsers.Owner = formBackground;
+                    frmUsers.ShowDialog();
+                    frmUsers.ShowInTaskbar = false;
+                }
+
+                formBackground.TopMost = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
         }
         private void pnlAddBooks_Click(object sender, EventArgs e)
         {
+            Form formBackground = new Form();
+            try
+            {
+                formBackground.StartPosition = FormStartPosition.Manual;
+                formBackground.FormBorderStyle = FormBorderStyle.None;
+                formBackground.Opacity = .50d;
+                formBackground.BackColor = Color.Black;
+                formBackground.WindowState = FormWindowState.Maximized;
+                formBackground.Location = this.Location;
+                formBackground.ShowInTaskbar = false;
+                formBackground.Show();
 
-            frmAddBooks addBooks = new frmAddBooks();
-            addBooks.Show();
-            this.Hide();
+                using (frmAddBooks frmAddBooks = new frmAddBooks())
+                {
+                    frmAddBooks.Owner = formBackground;
+                    frmAddBooks.ShowDialog();
+                    frmAddBooks.ShowInTaskbar = false;
+                }
+
+                formBackground.TopMost = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
 
         }
         private void pnlIssueBooks_Click(object sender, EventArgs e)
         {
-            frmIssueBook issueBook = new frmIssueBook(admin_id);
-            issueBook.Show();
-            this.Hide();
+            Form formBackground = new Form();
+            try
+            {
+                formBackground.StartPosition = FormStartPosition.Manual;
+                formBackground.FormBorderStyle = FormBorderStyle.None;
+                formBackground.Opacity = .50d;
+                formBackground.BackColor = Color.Black;
+                formBackground.WindowState = FormWindowState.Maximized;
+                formBackground.Location = this.Location;
+                formBackground.ShowInTaskbar = false;
+                formBackground.Show();
+
+                using (frmIssueBook frmIssueBook = new frmIssueBook(admin_id))
+                {
+                    frmIssueBook.Owner = formBackground;
+                    frmIssueBook.ShowDialog();
+                    frmIssueBook.ShowInTaskbar = false;
+                }
+                formBackground.TopMost = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
         }
         private void frmDashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
-        private void lblHome_Click(object sender, EventArgs e)
+
+        private void pnlManage_Click(object sender, EventArgs e)
         {
-            return;
+            Form formBackground = new Form();
+            try
+            {
+                formBackground.StartPosition = FormStartPosition.Manual;
+                formBackground.FormBorderStyle = FormBorderStyle.None;
+                formBackground.Opacity = .50d;
+                formBackground.BackColor = Color.Black;
+                formBackground.WindowState = FormWindowState.Maximized;
+                formBackground.Location = this.Location;
+                formBackground.ShowInTaskbar = false;
+                formBackground.Show();
+
+                using (ManageBooks ManageBooks = new ManageBooks(admin_id))
+                {
+                    ManageBooks.Owner = formBackground;
+                    ManageBooks.ShowDialog();
+                    ManageBooks.ShowInTaskbar = false;
+                }
+                formBackground.TopMost = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
         }
-        private void lblBooks_Click(object sender, EventArgs e)
+
+        private void pnlActiveLoans_Click(object sender, EventArgs e)
         {
-            return;
+            Form formBackground = new Form();
+            try
+            {
+                formBackground.StartPosition = FormStartPosition.Manual;
+                formBackground.FormBorderStyle = FormBorderStyle.None;
+                formBackground.Opacity = .50d;
+                formBackground.BackColor = Color.Black;
+                formBackground.WindowState = FormWindowState.Maximized;
+                formBackground.Location = this.Location;
+                formBackground.ShowInTaskbar = false;
+                formBackground.Show();
+
+                using (frmActiveLoans frmActiveLoans = new frmActiveLoans())
+                {
+                    frmActiveLoans.Owner = formBackground;
+                    frmActiveLoans.ShowDialog();
+                    frmActiveLoans.ShowInTaskbar = false;
+                }
+                formBackground.TopMost = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally 
+            { 
+                formBackground.Dispose(); 
+            }
         }
-        private void lblLogout_Click(object sender, EventArgs e)
+        private void DrawPanelBorder(Graphics g, Panel panel)
+        {
+            Rectangle r = new Rectangle(0, 0, panel.ClientRectangle.Width - 1, panel.ClientRectangle.Height - 1);
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawRectangle(p, r);
+        }
+
+        private void pnlUsers_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlUsers);
+        }
+
+        private void pnlActiveLoans_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlActiveLoans);
+        }
+
+        private void pnlIssueBooks_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlIssueBooks);
+        }
+
+        private void pnlManage_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlManage);
+        }
+
+        private void pnlAddBooks_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlAddBooks);
+        }
+
+        private void pnlExpiredLoans_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, pnlExpiredLoans);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            DrawPanelBorder(e.Graphics, panel1);
+        }
+
+        private void imgLogout_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to Logout?", "Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -181,18 +312,37 @@ namespace LMS.Resources
             }
         }
 
-        private void pnlManage_Click(object sender, EventArgs e)
+        private void pnlExpiredLoans_Click(object sender, EventArgs e)
         {
-            ManageBooks manageBooks = new ManageBooks(admin_id);
-            manageBooks.Show();
-            this.Hide();
-        }
+            Form formBackground = new Form();
+            try
+            {
+                formBackground.StartPosition = FormStartPosition.Manual;
+                formBackground.FormBorderStyle = FormBorderStyle.None;
+                formBackground.Opacity = .50d;
+                formBackground.BackColor = Color.Black;
+                formBackground.WindowState = FormWindowState.Maximized;
+                formBackground.Location = this.Location;
+                formBackground.ShowInTaskbar = false;
+                formBackground.Show();
 
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            ManageBooks manageBooks = new ManageBooks(admin_id);
-            manageBooks.Show();
-            this.Hide();
+                using (frmExpiredLoans frmExpiredLoans = new frmExpiredLoans())
+                {
+                    frmExpiredLoans.Owner = formBackground;
+                    frmExpiredLoans.ShowDialog();
+                    frmExpiredLoans.ShowInTaskbar = false;
+                }
+
+                formBackground.TopMost = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
         }
     }
 }
