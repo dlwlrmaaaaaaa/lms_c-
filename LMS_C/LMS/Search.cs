@@ -138,6 +138,9 @@ namespace LMS
                     else if (!string.IsNullOrEmpty(searchText))
                     {
                         sql = "SELECT * FROM books WHERE LOWER(title) LIKE @search OR LOWER(author) LIKE @search OR LOWER(ISBN) LIKE @search";
+                    }else if (selectedGenre == "All")
+                    {
+                        sql = "SELECT * FROM books";
                     }
                     else if (!string.IsNullOrEmpty(selectedGenre))
                     {
@@ -266,6 +269,7 @@ namespace LMS
         {
             try
             {
+
                 using (myconn = new MySqlConnection(con))
                 {
                     myconn.Open();
@@ -274,11 +278,14 @@ namespace LMS
                     {
                         using (rdr = cmd.ExecuteReader())
                         {
+                            cmbCategories.Items.Add("All");
                             while (rdr.Read())
                             {
                                 string genre = rdr.GetString(0);
+                            
                                 cmbCategories.Items.Add(genre);
                             }
+
                         }
                     }
                 }

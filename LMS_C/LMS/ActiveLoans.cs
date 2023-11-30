@@ -73,6 +73,7 @@ namespace LMS
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
         private void frmActiveLoans_FormClosed(object sender, FormClosedEventArgs e)

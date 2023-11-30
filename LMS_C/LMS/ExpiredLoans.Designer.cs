@@ -28,125 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lvwList = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnBlacklist = new System.Windows.Forms.Button();
-            this.btnPenalty = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            lvwList = new ListView();
+            columnHeader7 = new ColumnHeader();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader6 = new ColumnHeader();
+            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            btnBlacklist = new Button();
+            btnPenalty = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // lvwList
             // 
-            this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader5,
-            this.columnHeader4});
-            this.lvwList.FullRowSelect = true;
-            this.lvwList.GridLines = true;
-            this.lvwList.Location = new System.Drawing.Point(12, 64);
-            this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(776, 385);
-            this.lvwList.TabIndex = 13;
-            this.lvwList.UseCompatibleStateImageBehavior = false;
-            this.lvwList.View = System.Windows.Forms.View.Details;
+            lvwList.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader1, columnHeader2, columnHeader3, columnHeader5, columnHeader4, columnHeader6 });
+            lvwList.FullRowSelect = true;
+            lvwList.GridLines = true;
+            lvwList.Location = new Point(12, 64);
+            lvwList.Name = "lvwList";
+            lvwList.Size = new Size(776, 385);
+            lvwList.TabIndex = 13;
+            lvwList.UseCompatibleStateImageBehavior = false;
+            lvwList.View = View.Details;
+            lvwList.SelectedIndexChanged += lvwList_SelectedIndexChanged;
+            lvwList.MouseDoubleClick += lvwList_MouseDoubleClick;
+            // 
+            // columnHeader7
+            // 
+            columnHeader7.Text = "User ID";
+            columnHeader7.TextAlign = HorizontalAlignment.Center;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Student No.";
-            this.columnHeader1.Width = 100;
+            columnHeader1.Text = "Student No.";
+            columnHeader1.Width = 100;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Name";
-            this.columnHeader2.Width = 200;
+            columnHeader2.Text = "Name";
+            columnHeader2.TextAlign = HorizontalAlignment.Center;
+            columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Book Borrowed";
-            this.columnHeader3.Width = 300;
+            columnHeader3.Text = "Book Borrowed";
+            columnHeader3.TextAlign = HorizontalAlignment.Center;
+            columnHeader3.Width = 300;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Due Date";
-            this.columnHeader5.Width = 120;
+            columnHeader5.Text = "Due Date";
+            columnHeader5.TextAlign = HorizontalAlignment.Center;
+            columnHeader5.Width = 120;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Days Overdue";
-            this.columnHeader4.Width = 120;
+            columnHeader4.Text = "Days Overdue";
+            columnHeader4.TextAlign = HorizontalAlignment.Center;
+            columnHeader4.Width = 120;
+            // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "Penalty Applied";
+            columnHeader6.TextAlign = HorizontalAlignment.Center;
+            columnHeader6.Width = 100;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Modern No. 20", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(12, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 29);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Expired Loans";
+            label1.AutoSize = true;
+            label1.Font = new Font("Modern No. 20", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.Location = new Point(12, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(190, 29);
+            label1.TabIndex = 15;
+            label1.Text = "Expired Loans";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::LMS.Properties.Resources.x;
-            this.pictureBox1.Location = new System.Drawing.Point(753, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            pictureBox1.Image = Properties.Resources.x;
+            pictureBox1.Location = new Point(753, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(35, 35);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // btnBlacklist
             // 
-            this.btnBlacklist.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnBlacklist.Location = new System.Drawing.Point(629, 15);
-            this.btnBlacklist.Name = "btnBlacklist";
-            this.btnBlacklist.Size = new System.Drawing.Size(100, 32);
-            this.btnBlacklist.TabIndex = 17;
-            this.btnBlacklist.Text = "Blacklist";
-            this.btnBlacklist.UseVisualStyleBackColor = true;
-            this.btnBlacklist.Click += new System.EventHandler(this.btnBlacklist_Click);
+            btnBlacklist.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBlacklist.Location = new Point(629, 15);
+            btnBlacklist.Name = "btnBlacklist";
+            btnBlacklist.Size = new Size(100, 32);
+            btnBlacklist.TabIndex = 17;
+            btnBlacklist.Text = "Blacklist";
+            btnBlacklist.UseVisualStyleBackColor = true;
+            btnBlacklist.Click += btnBlacklist_Click;
             // 
             // btnPenalty
             // 
-            this.btnPenalty.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnPenalty.Location = new System.Drawing.Point(523, 15);
-            this.btnPenalty.Name = "btnPenalty";
-            this.btnPenalty.Size = new System.Drawing.Size(100, 32);
-            this.btnPenalty.TabIndex = 16;
-            this.btnPenalty.Text = "Penalty";
-            this.btnPenalty.UseVisualStyleBackColor = true;
-            this.btnPenalty.Click += new System.EventHandler(this.btnPenalty_Click);
+            btnPenalty.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPenalty.Location = new Point(523, 15);
+            btnPenalty.Name = "btnPenalty";
+            btnPenalty.Size = new Size(100, 32);
+            btnPenalty.TabIndex = 16;
+            btnPenalty.Text = "Penalty";
+            btnPenalty.UseVisualStyleBackColor = true;
+            btnPenalty.Click += btnPenalty_Click;
             // 
             // frmExpiredLoans
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(800, 460);
-            this.Controls.Add(this.btnBlacklist);
-            this.Controls.Add(this.btnPenalty);
-            this.Controls.Add(this.lvwList);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmExpiredLoans";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ExpiredLoans";
-            this.Load += new System.EventHandler(this.frmExpiredLoans_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(199, 229, 255);
+            ClientSize = new Size(800, 460);
+            Controls.Add(btnBlacklist);
+            Controls.Add(btnPenalty);
+            Controls.Add(lvwList);
+            Controls.Add(label1);
+            Controls.Add(pictureBox1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "frmExpiredLoans";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "ExpiredLoans";
+            Load += frmExpiredLoans_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -161,5 +174,7 @@
         private PictureBox pictureBox1;
         private Button btnBlacklist;
         private Button btnPenalty;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
     }
 }

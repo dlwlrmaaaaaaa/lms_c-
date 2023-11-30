@@ -42,6 +42,7 @@ namespace LMS
         {
             picBook.SizeMode = PictureBoxSizeMode.StretchImage;
             myconn = new MySqlConnection(con);
+            CheckifSuspended();
             myconn.Open();
             // getbookid();
             //  getStudentNumber();
@@ -59,14 +60,47 @@ namespace LMS
                 this.Close();
             }
         }
+        public int penaltyCount;
+        DateTime penaltyDate = DateTime.Now;
+        private void CheckifSuspended()
+        {
+            try
+            {
+                using (MySqlConnection myconn = new MySqlConnection(con))
+                {
+                    myconn.Open();
+                    string sql = "SELECT penalty_count, penalty_date FROM penalty WHERE user_id = @user_id";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", user_id);
+                        using (MySqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            if (rdr.Read())
+                            {
+                                penaltyDate = Convert.ToDateTime(rdr["penalty_date"]);
+                                // penaltyCount = rdr.GetInt32("penalty_count");
+                            }
+                        }
+                    }
+
+                }
+            } catch (MySqlException e)
+            {
+                MessageBox.Show("Suspended function () : " + e.Message);
+            }
+        }
+
 
         DateTime date = DateTime.Now;
         private void BorrowBook()
         {
+
             try
             {
                 using (myconn = new MySqlConnection(con))
                 {
+
                     myconn.Open();
                     string sql = "INSERT INTO borrower_record (user_id, book_id, bktitle, borrow_date, status) VALUES (@user_id, @book_id, @bktitle, @borrow, @status)";
                     using (cmd = new MySqlCommand(sql, myconn))
@@ -86,27 +120,40 @@ namespace LMS
             {
                 MessageBox.Show("Error sa BorrowBook function: " + e.Message);
             }
+        
+      
         }
 
         private void btnAddBook_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("Please click 'YES' to confirm!", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (res == DialogResult.Yes)
+            if (penaltyDate < date)
             {
-                if (txtCopies.Text != "0")
+                DialogResult res = MessageBox.Show("Please click 'YES' to confirm!", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
                 {
-                    BorrowBook();
-                    MessageBox.Show("Successfull!");
+
+                    if (txtCopies.Text != "0")
+                    {
+                        BorrowBook();
+                        MessageBox.Show("Successfull!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("There is no Available Copies! Come back Again!", "Not Availaible", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("There is no Available Copies! Come back Again!", "Not Availaible", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
             }
             else
             {
-                return;
+                DateTime currentDate = DateTime.Now;
+                TimeSpan remainingDate = currentDate - penaltyDate;
+                MessageBox.Show("You can't borrow book at the moment! The remaining days of suspension is " + remainingDate.Days + " Day/s");
             }
+           
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

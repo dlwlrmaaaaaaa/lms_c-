@@ -16,6 +16,7 @@ namespace LMS
     public partial class frmHome : Form
     {
         public int user_id;
+        public int anotherUserID;
         private Label[] titleLabels;
         private Label[] authorLabels;
         private PictureBox[] picBooks;
@@ -38,6 +39,7 @@ namespace LMS
         {
             myconn = new MySqlConnection(con);
             myconn.Open();
+            ifSuspended();          
             displayName();
             string countQuery = "SELECT COUNT(*) FROM books";
 
@@ -53,6 +55,36 @@ namespace LMS
             {
                 picBooks[i].Click += picBook_Click;
                 picBooks[i].Tag = i;
+            }
+        }
+
+        private void ifSuspended()
+        {
+            try
+            {
+                using(MySqlConnection myconn = new MySqlConnection(con))
+                {
+                    myconn.Open();
+                    string sql = "SELECT COUNT(*) FROM borrower_return_record WHERE user_id = @id AND due_date < NOW() AND bk_return_date IS NULL";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", user_id);
+
+
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                            
+                        if(count > 0)
+                        {
+                            MessageBox.Show("Please Return The Book! You have had borrowed!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                       
+                    }
+                }
+
+
+            }catch(MySqlException e)
+            {
+                MessageBox.Show("sa Home : " + e.Message);
             }
         }
 

@@ -15,15 +15,9 @@ namespace LMS
     public partial class frmMyBooks : Form
     {
         private TextBox txtStudentNum;
-        private string student_number;
         private int user_id;
         private PictureBox picbook;
-        private string Author;
-        private string title;
-        private string Genre;
-        private string isbn;
-        private string isbn1;
-        private string summary;
+
         public frmMyBooks(int user_id)
         {
             InitializeComponent();
@@ -31,10 +25,7 @@ namespace LMS
             this.txtStudentNum = new TextBox();
             this.picbook = new PictureBox();
         }
-
         MySqlConnection myconn;
-        MySqlCommand cmd;
-        MySqlDataReader rdr;
         string con = "Server=localhost;Database=library;Uid=root;Pwd=;";
 
         private void frmMyBooks_Load(object sender, EventArgs e)
@@ -211,7 +202,8 @@ namespace LMS
 
         private void btnLost_Click(object sender, EventArgs e)
         {
-
+            DialogResult result = MessageBox.Show("Please make sure that you've lost the book before confirming", "Notifcation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                
         }
     }
 }
