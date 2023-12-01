@@ -14,16 +14,15 @@ namespace LMS
 {
     public partial class frmMyBooks : Form
     {
-        private TextBox txtStudentNum;
-        private int user_id;
-        private PictureBox picbook;
 
+        private int user_id;
+  
+        private string student_number = "";
         public frmMyBooks(int user_id)
         {
             InitializeComponent();
             this.user_id = user_id;
-            this.txtStudentNum = new TextBox();
-            this.picbook = new PictureBox();
+  
         }
         MySqlConnection myconn;
         string con = "Server=localhost;Database=library;Uid=root;Pwd=;";
@@ -32,11 +31,38 @@ namespace LMS
         {
             myconn = new MySqlConnection(con);
             myconn.Open();
+           
             btnReturn.Enabled = false;
-            // getStudentNumber();
-            myBooks(listView1);
-        }
+            btnLost.Enabled = false;
 
+            myBooks(listView1);
+            getStudentNumber(user_id);
+        }
+        private void getStudentNumber(int id)
+        {
+            try { 
+                    using(MySqlConnection myconn = new MySqlConnection(con))
+                {
+                    myconn.Open();
+                    string sql = "SELECT student_number FROM users WHERE user_id = @user_id";
+                        using(MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", id);
+                        using(MySqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            if (rdr.Read())
+                            {
+                                student_number = rdr["student_number"].ToString();
+                            }
+                        }
+                    }
+                }
+
+            }catch(Exception e)
+            {
+                MessageBox.Show("getStudentNumber: " + e.Message);
+            }
+        }
         private void myBooks(ListView listview)
         {
             try
@@ -169,6 +195,7 @@ namespace LMS
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             btnReturn.Enabled = true;
+            btnLost.Enabled = true;
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -203,7 +230,47 @@ namespace LMS
         private void btnLost_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Please make sure that you've lost the book before confirming", "Notifcation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+
+                    using (MySqlConnection myconn = new MySqlConnection(con))
+                    {
+
+                        myconn.Open();
+                        string sql = "INSERT INTO lost_book (book_id, bktitle, student_number ) VALUES (@book_id,@bktitle, @sn)  ";
+                        using(MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                        {
+                            ListViewItem selectedbookId = listView1.SelectedItems[0];
+                            int bookid = int.Parse(selectedbookId.SubItems[0].Text);
+                            cmd.Parameters.AddWithValue("@book_id", bookid);
+                            cmd.Parameters.AddWithValue("@bktitle", selectedbookId.SubItems[2].Text);
+                            cmd.Parameters.AddWithValue("@sn", student_number);
+                            cmd.ExecuteNonQuery();
+                           
+                        }
+                        string deleteSql = "DELETE FROM borrower_return_record WHERE borrower_id = @b_id";
+                        using(MySqlCommand cmd = new MySqlCommand(deleteSql, myconn))
+                        {
+                            ListViewItem selectedbookId = listView1.SelectedItems[0];
+                            cmd.Parameters.AddWithValue("@b_id", selectedbookId.SubItems[0].Text);
+                            int rowAffected = cmd.ExecuteNonQuery();
+                            if (rowAffected > 0)
+                            {
+                                MessageBox.Show("Lost book filed Success!", "Notfication", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        myBooks(listView1);
+                    }
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Error LostClick: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

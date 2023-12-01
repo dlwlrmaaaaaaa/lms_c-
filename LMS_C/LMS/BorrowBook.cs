@@ -43,6 +43,7 @@ namespace LMS
             picBook.SizeMode = PictureBoxSizeMode.StretchImage;
             myconn = new MySqlConnection(con);
             CheckifSuspended();
+            CheckIfIdenticalBook();
             myconn.Open();
             // getbookid();
             //  getStudentNumber();
@@ -90,7 +91,36 @@ namespace LMS
                 MessageBox.Show("Suspended function () : " + e.Message);
             }
         }
+        private int id_book;
+        private void CheckIfIdenticalBook()
+        {
+            try
+            {
+                using (MySqlConnection myconn = new MySqlConnection(con))
+                {
+                    myconn.Open();
+                    string sql = "SELECT book_id FROM borrower_return_record WHERE user_id = @user_id AND bk_return_date IS NULL";
 
+                    using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", user_id);
+                        using (MySqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            if (rdr.Read())
+                            {
+                                id_book = rdr.GetInt32("book_id");
+                                // penaltyCount = rdr.GetInt32("penalty_count");
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("CheckIfIdenticalBook () : " + e.Message);
+            }
+        }
 
         DateTime date = DateTime.Now;
         private void BorrowBook()
@@ -128,24 +158,32 @@ namespace LMS
         {
             if (penaltyDate < date)
             {
-                DialogResult res = MessageBox.Show("Please click 'YES' to confirm!", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (res == DialogResult.Yes)
+                if(id_book != book_id)
                 {
-
-                    if (txtCopies.Text != "0")
+                    DialogResult res = MessageBox.Show("Please click 'YES' to confirm!", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (res == DialogResult.Yes)
                     {
-                        BorrowBook();
-                        MessageBox.Show("Successfull!");
+
+                        if (txtCopies.Text != "0")
+                        {
+                            BorrowBook();
+                            MessageBox.Show("Successfull!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("There is no Available Copies! Come back Again!", "Not Availaible", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("There is no Available Copies! Come back Again!", "Not Availaible", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
                 }
                 else
                 {
-                    return;
+                    MessageBox.Show("You cannot borrow the same book", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+               
             }
             else
             {

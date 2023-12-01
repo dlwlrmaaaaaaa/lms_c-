@@ -82,7 +82,7 @@ namespace LMS
             {
                 MessageBox.Show("Please fill in all the required fields.");
                 return;
-            } 
+            }
             else
             {
                 addAccount();
@@ -134,6 +134,7 @@ namespace LMS
                                     item.SubItems.Add(rdr.GetString(1));
                                     item.SubItems.Add(rdr.GetString(2));
                                     item.SubItems.Add(rdr.GetString(3));
+                                    item.SubItems.Add(rdr.GetString(4));
                                     listview.Items.Add(item);
                                 }
                             }
@@ -238,12 +239,12 @@ namespace LMS
                 DialogResult rslt = MessageBox.Show("Do you really want to delete this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (rslt == DialogResult.Yes)
                 {
-                   using(MySqlConnection myconn = new MySqlConnection(con))
+                    using (MySqlConnection myconn = new MySqlConnection(con))
                     {
-                        
+
                         myconn.Open();
                         string sql = "DELETE FROM users WHERE user_id = @user_id";
-                        using(MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                        using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
                         {
                             int userId;
                             if (int.TryParse(selectedItem.SubItems[0].Text, out userId))
@@ -251,7 +252,7 @@ namespace LMS
                                 cmd.Parameters.AddWithValue("@user_id", userId);
                                 cmd.ExecuteNonQuery();
                             }
-                            
+
                         }
                     }
                     MessageBox.Show("Record Deleted!");

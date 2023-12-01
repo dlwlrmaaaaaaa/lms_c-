@@ -108,7 +108,7 @@ namespace LMS
 
                             //  string deleteFromActiveLoans = "DELETE from "
                         }
-                        string updateSql = "UPDATE borrower_return_record SET isPenalty = @true";
+                        string updateSql = "UPDATE borrower_return_record SET isPenalty = @true WHERE user_id = @user_id AND bktitle = @title AND bk_return_date IS NULL";
                         using (MySqlCommand cmd1 = new MySqlCommand(updateSql, myconn1))
                         {
                             cmd1.Parameters.AddWithValue("@true", "true");

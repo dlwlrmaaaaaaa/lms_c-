@@ -29,284 +29,286 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsers));
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.txtxStudNo = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lvwAccounts = new System.Windows.Forms.ListView();
-            this.lvwID = new System.Windows.Forms.ColumnHeader();
-            this.lvwStudentID = new System.Windows.Forms.ColumnHeader();
-            this.lvwName = new System.Windows.Forms.ColumnHeader();
-            this.lvwEmail = new System.Windows.Forms.ColumnHeader();
-            this.txtAccType = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            txtID = new TextBox();
+            txtxStudNo = new TextBox();
+            label3 = new Label();
+            txtName = new TextBox();
+            label4 = new Label();
+            txtPassword = new TextBox();
+            label6 = new Label();
+            txtEmail = new TextBox();
+            label7 = new Label();
+            lvwAccounts = new ListView();
+            lvwID = new ColumnHeader();
+            lvwStudentID = new ColumnHeader();
+            lvwName = new ColumnHeader();
+            lvwEmail = new ColumnHeader();
+            txtAccType = new TextBox();
+            label5 = new Label();
+            btnEdit = new Button();
+            btnAdd = new Button();
+            btnUpdate = new Button();
+            btnCancel = new Button();
+            btnDelete = new Button();
+            btnNew = new Button();
+            pictureBox1 = new PictureBox();
+            columnHeader1 = new ColumnHeader();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Modern No. 20", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 29);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Manage Users";
+            label1.AutoSize = true;
+            label1.Font = new Font("Modern No. 20", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(12, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(179, 29);
+            label1.TabIndex = 3;
+            label1.Text = "Manage Users";
             // 
             // txtID
             // 
-            this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(299, 110);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(229, 23);
-            this.txtID.TabIndex = 5;
+            txtID.Enabled = false;
+            txtID.Location = new Point(299, 110);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(229, 23);
+            txtID.TabIndex = 5;
             // 
             // txtxStudNo
             // 
-            this.txtxStudNo.Location = new System.Drawing.Point(12, 145);
-            this.txtxStudNo.Name = "txtxStudNo";
-            this.txtxStudNo.Size = new System.Drawing.Size(229, 23);
-            this.txtxStudNo.TabIndex = 7;
+            txtxStudNo.Location = new Point(12, 145);
+            txtxStudNo.Name = "txtxStudNo";
+            txtxStudNo.Size = new Size(229, 23);
+            txtxStudNo.TabIndex = 7;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 126);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 16);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Student Number";
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 126);
+            label3.Name = "label3";
+            label3.Size = new Size(114, 16);
+            label3.TabIndex = 6;
+            label3.Text = "Student Number";
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(12, 200);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(229, 23);
-            this.txtName.TabIndex = 9;
+            txtName.Location = new Point(12, 200);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(229, 23);
+            txtName.TabIndex = 9;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 181);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 16);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Name";
+            label4.AutoSize = true;
+            label4.Location = new Point(12, 181);
+            label4.Name = "label4";
+            label4.Size = new Size(43, 16);
+            label4.TabIndex = 8;
+            label4.Text = "Name";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(12, 318);
-            this.txtPassword.MaxLength = 16;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(229, 23);
-            this.txtPassword.TabIndex = 13;
-            this.txtPassword.UseSystemPasswordChar = true;
+            txtPassword.Location = new Point(12, 318);
+            txtPassword.MaxLength = 16;
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(229, 23);
+            txtPassword.TabIndex = 13;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 297);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 16);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Password";
+            label6.AutoSize = true;
+            label6.Location = new Point(12, 297);
+            label6.Name = "label6";
+            label6.Size = new Size(69, 16);
+            label6.TabIndex = 12;
+            label6.Text = "Password";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(12, 259);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(229, 23);
-            this.txtEmail.TabIndex = 11;
+            txtEmail.Location = new Point(12, 259);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(229, 23);
+            txtEmail.TabIndex = 11;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 240);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 16);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Email Address";
+            label7.AutoSize = true;
+            label7.Location = new Point(12, 240);
+            label7.Name = "label7";
+            label7.Size = new Size(97, 16);
+            label7.TabIndex = 10;
+            label7.Text = "Email Address";
             // 
             // lvwAccounts
             // 
-            this.lvwAccounts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.lvwID,
-            this.lvwStudentID,
-            this.lvwName,
-            this.lvwEmail});
-            this.lvwAccounts.FullRowSelect = true;
-            this.lvwAccounts.GridLines = true;
-            this.lvwAccounts.Location = new System.Drawing.Point(264, 64);
-            this.lvwAccounts.Name = "lvwAccounts";
-            this.lvwAccounts.Size = new System.Drawing.Size(524, 384);
-            this.lvwAccounts.TabIndex = 14;
-            this.lvwAccounts.UseCompatibleStateImageBehavior = false;
-            this.lvwAccounts.View = System.Windows.Forms.View.Details;
-            this.lvwAccounts.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lvwAccounts_ItemSelectionChanged);
-            this.lvwAccounts.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvwAccounts_MouseDoubleClick);
+            lvwAccounts.Columns.AddRange(new ColumnHeader[] { lvwID, lvwStudentID, lvwName, lvwEmail, columnHeader1 });
+            lvwAccounts.FullRowSelect = true;
+            lvwAccounts.GridLines = true;
+            lvwAccounts.Location = new Point(264, 64);
+            lvwAccounts.Name = "lvwAccounts";
+            lvwAccounts.Size = new Size(524, 384);
+            lvwAccounts.TabIndex = 14;
+            lvwAccounts.UseCompatibleStateImageBehavior = false;
+            lvwAccounts.View = View.Details;
+            lvwAccounts.ItemSelectionChanged += lvwAccounts_ItemSelectionChanged;
+            lvwAccounts.MouseDoubleClick += lvwAccounts_MouseDoubleClick;
             // 
             // lvwID
             // 
-            this.lvwID.Text = "ID";
-            this.lvwID.Width = 30;
+            lvwID.Text = "ID";
+            lvwID.Width = 30;
             // 
             // lvwStudentID
             // 
-            this.lvwStudentID.Text = "Student Number";
-            this.lvwStudentID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.lvwStudentID.Width = 150;
+            lvwStudentID.Text = "Student Number";
+            lvwStudentID.TextAlign = HorizontalAlignment.Center;
+            lvwStudentID.Width = 150;
             // 
             // lvwName
             // 
-            this.lvwName.Text = "Name";
-            this.lvwName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.lvwName.Width = 180;
+            lvwName.Text = "Name";
+            lvwName.TextAlign = HorizontalAlignment.Center;
+            lvwName.Width = 180;
             // 
             // lvwEmail
             // 
-            this.lvwEmail.Text = "Email";
-            this.lvwEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.lvwEmail.Width = 200;
+            lvwEmail.Text = "Email";
+            lvwEmail.TextAlign = HorizontalAlignment.Center;
+            lvwEmail.Width = 200;
             // 
             // txtAccType
             // 
-            this.txtAccType.Enabled = false;
-            this.txtAccType.Location = new System.Drawing.Point(12, 83);
-            this.txtAccType.Name = "txtAccType";
-            this.txtAccType.Size = new System.Drawing.Size(229, 23);
-            this.txtAccType.TabIndex = 16;
-            this.txtAccType.Text = "User";
+            txtAccType.Enabled = false;
+            txtAccType.Location = new Point(12, 83);
+            txtAccType.Name = "txtAccType";
+            txtAccType.Size = new Size(229, 23);
+            txtAccType.TabIndex = 16;
+            txtAccType.Text = "User";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 64);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 16);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Account Type";
+            label5.AutoSize = true;
+            label5.Location = new Point(12, 64);
+            label5.Name = "label5";
+            label5.Size = new Size(99, 16);
+            label5.TabIndex = 15;
+            label5.Text = "Account Type";
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(12, 378);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 32);
-            this.btnEdit.TabIndex = 17;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            btnEdit.Location = new Point(12, 378);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(75, 32);
+            btnEdit.TabIndex = 17;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(93, 378);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 32);
-            this.btnAdd.TabIndex = 18;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            btnAdd.Location = new Point(93, 378);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(75, 32);
+            btnAdd.TabIndex = 18;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(174, 378);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 32);
-            this.btnUpdate.TabIndex = 19;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            btnUpdate.Location = new Point(174, 378);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(75, 32);
+            btnUpdate.TabIndex = 19;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(174, 416);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 32);
-            this.btnCancel.TabIndex = 22;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            btnCancel.Location = new Point(174, 416);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 32);
+            btnCancel.TabIndex = 22;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(93, 416);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 32);
-            this.btnDelete.TabIndex = 21;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            btnDelete.Location = new Point(93, 416);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(75, 32);
+            btnDelete.TabIndex = 21;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(12, 416);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 32);
-            this.btnNew.TabIndex = 20;
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            btnNew.Location = new Point(12, 416);
+            btnNew.Name = "btnNew";
+            btnNew.Size = new Size(75, 32);
+            btnNew.TabIndex = 20;
+            btnNew.Text = "New";
+            btnNew.UseVisualStyleBackColor = true;
+            btnNew.Click += btnNew_Click;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::LMS.Properties.Resources.x;
-            this.pictureBox1.Location = new System.Drawing.Point(753, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 23;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            pictureBox1.Image = Properties.Resources.x;
+            pictureBox1.Location = new Point(753, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(35, 35);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 23;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Status";
+            columnHeader1.TextAlign = HorizontalAlignment.Center;
+            columnHeader1.Width = 100;
             // 
             // frmUsers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(800, 460);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnNew);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.txtAccType);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.lvwAccounts);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtxStudNo);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtID);
-            this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmUsers";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Users";
-            this.Load += new System.EventHandler(this.frmUsers_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 16F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(199, 229, 255);
+            ClientSize = new Size(800, 460);
+            Controls.Add(pictureBox1);
+            Controls.Add(btnCancel);
+            Controls.Add(btnDelete);
+            Controls.Add(btnNew);
+            Controls.Add(btnUpdate);
+            Controls.Add(btnAdd);
+            Controls.Add(btnEdit);
+            Controls.Add(txtAccType);
+            Controls.Add(label5);
+            Controls.Add(lvwAccounts);
+            Controls.Add(txtPassword);
+            Controls.Add(label6);
+            Controls.Add(txtEmail);
+            Controls.Add(label7);
+            Controls.Add(txtName);
+            Controls.Add(label4);
+            Controls.Add(txtxStudNo);
+            Controls.Add(label3);
+            Controls.Add(txtID);
+            Controls.Add(label1);
+            Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "frmUsers";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Users";
+            Load += frmUsers_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -334,5 +336,6 @@
         private ColumnHeader lvwName;
         private ColumnHeader lvwEmail;
         private PictureBox pictureBox1;
+        private ColumnHeader columnHeader1;
     }
 }

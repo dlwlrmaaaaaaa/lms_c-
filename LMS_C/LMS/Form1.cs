@@ -27,11 +27,12 @@ namespace LMS
             signUp.Show();
             this.Hide();
         }
+
         private void Login()
         {
             string stud_id = txtStudentNum.Text;
             string pass = txtPassword.Text;
-
+            string status = "";    
             try
             {
                 using (myconn = new MySqlConnection(con))
@@ -50,8 +51,10 @@ namespace LMS
                         }
                         else
                         {
-                            sql = "SELECT * FROM users WHERE student_number = @stud_id";
-                            cmd.Parameters.AddWithValue("@stud_id", stud_id);
+
+                                sql = "SELECT * FROM users WHERE student_number = @stud_id";
+                                cmd.Parameters.AddWithValue("@stud_id", stud_id);
+                            
                         }
 
                         cmd.CommandText = sql;
@@ -70,19 +73,28 @@ namespace LMS
                                         int admin_id = -1;
                                         admin_id = rdr.GetInt32("admin_id");
                                         frmDashboard dashboard = new frmDashboard(admin_id);
-
                                         dashboard.Show();
-
+                                        this.Hide();
                                     }
                                     else
                                     {
-                                        string user = rdr["full_name"].ToString();
-                                       
-                                        user_id = rdr.GetInt32("user_id");
-                                        frmHome home1 = new frmHome(user_id);
-                                        home1.Show();
+                                        status = rdr["status"].ToString();
+                                        if(status == "Active")
+                                        {
+                                            string user = rdr["full_name"].ToString();
+                                            user_id = rdr.GetInt32("user_id");
+                                            frmHome home1 = new frmHome(user_id);
+                                            home1.Show();
+                                            this.Hide();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("You are restricted from logging in!\n Reason: Blacklisted!", "Restricted!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                            return;
+                                        }
+                                     
                                     }
-                                    this.Hide();
+                                    
                                 }
                                 else
                                 {
