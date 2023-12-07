@@ -37,6 +37,7 @@ namespace LMS
 
             myBooks(listView1);
             getStudentNumber(user_id);
+            countLostBook();
         }
         private void getStudentNumber(int id)
         {
@@ -226,7 +227,28 @@ namespace LMS
         {
             DrawPanelBorder(e.Graphics, panel2);
         }
+        public int countLost;
+        private void countLostBook()
+        {
+            try
+            {
+                using (MySqlConnection myconn = new MySqlConnection(con))
+                {
 
+                    myconn.Open();
+                    string sql = "SELECT COUNT(*) FROM lost_book WHERE user_id = @user_id";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", user_id);
+                        countLost = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error sa countLostBook function: " + e.Message);
+            }
+        }
         private void btnLost_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Please make sure that you've lost the book before confirming", "Notifcation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -235,19 +257,19 @@ namespace LMS
             {
                 try
                 {
-
                     using (MySqlConnection myconn = new MySqlConnection(con))
                     {
 
                         myconn.Open();
-                        string sql = "INSERT INTO lost_book (book_id, bktitle, student_number ) VALUES (@book_id,@bktitle, @sn)  ";
+                        string sql = "INSERT INTO lost_book (book_id, bktitle, student_number, user_id) VALUES (@book_id,@bktitle, @sn, @user_id)  ";
                         using(MySqlCommand cmd = new MySqlCommand(sql, myconn))
                         {
                             ListViewItem selectedbookId = listView1.SelectedItems[0];
-                            int bookid = int.Parse(selectedbookId.SubItems[0].Text);
+                            int bookid = int.Parse(selectedbookId.SubItems[1].Text);
                             cmd.Parameters.AddWithValue("@book_id", bookid);
                             cmd.Parameters.AddWithValue("@bktitle", selectedbookId.SubItems[2].Text);
                             cmd.Parameters.AddWithValue("@sn", student_number);
+                            cmd.Parameters.AddWithValue("@user_id", user_id);
                             cmd.ExecuteNonQuery();
                            
                         }
@@ -262,9 +284,47 @@ namespace LMS
                                 MessageBox.Show("Lost book filed Success!", "Notfication", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
+                        string penalty = "INSERT INTO penalty (user_id, penalty_count, penalty_date) VALUE (@user_id, @penalty_count, @penalty_date)";
+                        using (MySqlCommand cmd = new MySqlCommand(penalty, myconn))
+                        {
+                            cmd.Parameters.AddWithValue("@user_id", user_id);
+                            cmd.Parameters.AddWithValue("@penalty_count", 1);
+                            cmd.Parameters.AddWithValue("@penalty_date", date.AddDays(15));
+                            cmd.ExecuteNonQuery();
+                        }
                         myBooks(listView1);
                     }
-
+                    countLostBook();
+                    if (countLost >= 3)
+                    {
+                        try
+                        {
+                            string delete = "DELETE * FROM borrower_return_record WHERE user_id = @user_id AND bk_return_date IS NULL";
+                            using (MySqlCommand cmd = new MySqlCommand(delete, myconn))
+                            {
+                                cmd.Parameters.AddWithValue("@user_id", user_id);
+                                cmd.ExecuteNonQuery();                            
+                            }
+                            string sql = "UPDATE users SET status = @status WHERE user_id = @user_id";
+                            using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                            {
+                                cmd.Parameters.AddWithValue("@status", "Blacklisted");
+                                cmd.Parameters.AddWithValue("@user_id", user_id);
+                                cmd.ExecuteNonQuery();
+                                MessageBox.Show("You have been blacklisted \n " +
+                                    "Reason: you lost 3 Books", "Notfication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                               
+                            }
+                            this.Close();
+                            frmLogin login = new frmLogin();
+                            login.Show();
+                        }
+                        catch (MySqlException ey)
+                        {
+                            MessageBox.Show("coubntlostao : " + ey.Message);
+                        }
+                        return;
+                    }
                 }
                 catch (MySqlException ex)
                 {

@@ -40,12 +40,13 @@
             pictureBox1 = new PictureBox();
             btnBlacklist = new Button();
             btnPenalty = new Button();
+            columnHeader8 = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lvwList
             // 
-            lvwList.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader1, columnHeader2, columnHeader3, columnHeader5, columnHeader4, columnHeader6 });
+            lvwList.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader1, columnHeader2, columnHeader3, columnHeader5, columnHeader4, columnHeader6, columnHeader8 });
             lvwList.FullRowSelect = true;
             lvwList.GridLines = true;
             lvwList.Location = new Point(12, 64);
@@ -141,6 +142,12 @@
             btnPenalty.UseVisualStyleBackColor = true;
             btnPenalty.Click += btnPenalty_Click;
             // 
+            // columnHeader8
+            // 
+            columnHeader8.Text = "Penalty Return Date ";
+            columnHeader8.TextAlign = HorizontalAlignment.Center;
+            columnHeader8.Width = 150;
+            // 
             // frmExpiredLoans
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -176,5 +183,6 @@
         private Button btnPenalty;
         private ColumnHeader columnHeader6;
         private ColumnHeader columnHeader7;
+        private ColumnHeader columnHeader8;
     }
 }

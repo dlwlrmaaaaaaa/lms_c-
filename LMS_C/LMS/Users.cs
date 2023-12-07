@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LMS.Resources;
 using MySql.Data.MySqlClient;
 namespace LMS
 {
@@ -85,6 +86,7 @@ namespace LMS
             }
             else
             {
+
                 addAccount();
                 Disable();
                 btnNew.Enabled = true;
@@ -308,6 +310,12 @@ namespace LMS
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+          
+            frmDashboard dashboard = Application.OpenForms["frmDashboard"] as frmDashboard;
+            if (dashboard != null)
+            {
+                dashboard.UpdateRowCountLabel();
+            }
             this.Close();
         }
     }

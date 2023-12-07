@@ -18,6 +18,8 @@ namespace LMS
         private int book_id;
         private int user_id;
         private string name;
+        public int count;
+        public int countborrowed;
         public frmBorrowBook(int uid, string id, string lbl, string author, string genre, string ISBN, string Summary, string copies, Image pic)
         {
             InitializeComponent();
@@ -44,6 +46,9 @@ namespace LMS
             myconn = new MySqlConnection(con);
             CheckifSuspended();
             CheckIfIdenticalBook();
+            checkIfSameBook();
+            countBorrowBook();
+            CountOfBorrowedBook();
             myconn.Open();
             // getbookid();
             //  getStudentNumber();
@@ -61,6 +66,67 @@ namespace LMS
                 this.Close();
             }
         }
+        Boolean isCurrentlyTaking = false;
+        private void checkIfSameBook()
+        {
+            try
+            {
+                using(MySqlConnection myconn = new MySqlConnection(con))
+                {
+                    myconn.Open();
+                    string sql = "SELECT user_id, book_id FROM borrower_record WHERE user_id = @user_id and book_id = @book_id";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", user_id);
+                        cmd.Parameters.AddWithValue("@book_id", book_id);
+                        using(MySqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            if (rdr.Read())
+                            {
+                                int u_id = rdr.GetInt32("user_id");
+                                int b_id = rdr.GetInt32("book_id");
+
+                                if(user_id == u_id && b_id == book_id)
+                                {
+                                    isCurrentlyTaking = true;
+                                  
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+
+            }catch(MySqlException e)
+            {
+                MessageBox.Show("ChecksameBook () : " + e.Message);
+            }
+        }
+
+        private void countBorrowBook()
+        {
+            try
+            {
+                using (MySqlConnection myconn = new MySqlConnection(con))
+                {
+                    myconn.Open();
+                    string sql = "SELECT COUNT(*) FROM borrower_record WHERE user_id = @user_id";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", user_id);
+                        count = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+
+
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("count of borrowBook () : " + e.Message);
+            }
+        }
+
         public int penaltyCount;
         DateTime penaltyDate = DateTime.Now;
         private void CheckifSuspended()
@@ -122,6 +188,30 @@ namespace LMS
             }
         }
 
+        private void CountOfBorrowedBook()
+        {
+            try
+            {
+                using (myconn = new MySqlConnection(con))
+                {
+
+                    myconn.Open();
+                    string sql = "SELECT COUNT(*) FROM borrower_return_record WHERE user_id = @user_id AND bk_return_date IS NULL";
+                    using (cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", user_id);
+                        countborrowed = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error sa BorrowBook function: " + e.Message);
+            }
+        }
+
         DateTime date = DateTime.Now;
         private void BorrowBook()
         {
@@ -156,6 +246,8 @@ namespace LMS
 
         private void btnAddBook_Click(object sender, EventArgs e)
         {
+            int totalborrow = 0;
+            totalborrow = count + countborrowed;
             if (penaltyDate < date)
             {
                 if(id_book != book_id)
@@ -163,15 +255,38 @@ namespace LMS
                     DialogResult res = MessageBox.Show("Please click 'YES' to confirm!", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (res == DialogResult.Yes)
                     {
-
-                        if (txtCopies.Text != "0")
+                        if(totalborrow >= 3)
                         {
-                            BorrowBook();
-                            MessageBox.Show("Successfull!");
+                            MessageBox.Show("You have " + countborrowed + " book/s and " + count + " pending borrow book \n Maximum of 3 Books per transaction", "Reached Maximum", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                       if(count >= 3)
+                        {
+                            MessageBox.Show("You reached the maximum allowed to borrow!", "Maximum", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("There is no Available Copies! Come back Again!", "Not Availaible", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (!isCurrentlyTaking)
+                            {
+
+                                if (txtCopies.Text != "0")
+                                {
+                                    BorrowBook();
+                                    MessageBox.Show("Successfull!");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("There is no Available Copies! Come back Again!", "Not Availaible", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                isCurrentlyTaking = false;
+                            }
+                            else
+                            {
+                                MessageBox.Show("You cannot borrow the same book!", "Identical Book", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            countBorrowBook();
+                            checkIfSameBook();
+                            CheckIfIdenticalBook();
                         }
                     }
                     else

@@ -40,7 +40,7 @@ namespace LMS
                 using (myconn = new MySqlConnection(con))
                 {
                     myconn.Open();
-                    string sql = "SELECT * FROM borrower_return_record INNER JOIN users ON users.user_id = borrower_return_record.user_id WHERE due_date < NOW() AND bk_return_date IS NULL";
+                    string sql = "SELECT * FROM borrower_return_record INNER JOIN users ON users.user_id = borrower_return_record.user_id INNER JOIN penalty ON penalty.user_id WHERE due_date < NOW() AND bk_return_date IS NULL";
                     using (cmd = new MySqlCommand(sql, myconn))
                     {
 
@@ -56,9 +56,10 @@ namespace LMS
                                 item.SubItems.Add(rdr["student_number"].ToString());
                                 item.SubItems.Add(rdr["full_name"].ToString());
                                 item.SubItems.Add(rdr["bktitle"].ToString());
-                                item.SubItems.Add(rdr["due_date"].ToString());                          
+                                item.SubItems.Add(rdr["due_date"].ToString());
                                 item.SubItems.Add(overdueDays.ToString());
                                 item.SubItems.Add(rdr["isPenalty"].ToString());
+                                item.SubItems.Add(rdr["return_deadline"].ToString());
                                 listview.Items.Add(item);
 
                             }
@@ -88,25 +89,23 @@ namespace LMS
             DialogResult res = MessageBox.Show("Click yes to apply penalty.", "Penalty", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
             {
-                ListViewItem selectedItem = lvwList.SelectedItems[0];
+             
                 try
                 {
                     using (MySqlConnection myconn1 = new MySqlConnection(con))
                     {
                         myconn1.Open();
-                        string sql = "INSERT INTO penalty (user_id, penalty_count, penalty_date) VALUES (@user_id, @count, @date)";
+                        string sql = "INSERT INTO penalty (user_id, penalty_count, penalty_date, return_deadline) VALUES (@user_id, @count, @date, @rd)";
                         using (MySqlCommand cmd = new MySqlCommand(sql, myconn1))
                         {
+                            ListViewItem selectedItem = lvwList.SelectedItems[0];
                             int id = int.Parse(selectedItem.SubItems[0].Text);
-
                             DateTime date = DateTime.Now;
                             cmd.Parameters.AddWithValue("@user_id", id);
                             cmd.Parameters.AddWithValue("@count", 1);
-                            cmd.Parameters.AddWithValue("@date", date.AddDays(7));
+                            cmd.Parameters.AddWithValue("@date", date.AddDays(2));
+                            cmd.Parameters.AddWithValue("@rd",date.AddDays(7));
                             cmd.ExecuteNonQuery();
-
-
-                            //  string deleteFromActiveLoans = "DELETE from "
                         }
                         string updateSql = "UPDATE borrower_return_record SET isPenalty = @true WHERE user_id = @user_id AND bktitle = @title AND bk_return_date IS NULL";
                         using (MySqlCommand cmd1 = new MySqlCommand(updateSql, myconn1))
@@ -155,12 +154,14 @@ namespace LMS
                             cmd.Parameters.AddWithValue("@fn", selectedItem.SubItems[2].Text);
                             cmd.ExecuteNonQuery();
                         }
-                        string update = "UPDATE users SET status = @status";
+                        string update = "UPDATE users SET status = @status WHERE user_id = @user_id";
                         using (MySqlCommand cmd1 = new MySqlCommand(update, myconn1))
                         {
+                            int id = int.Parse(selectedItem.SubItems[0].Text);
                             cmd1.Parameters.AddWithValue("@status", "Blacklisted!");
+                             cmd1.Parameters.AddWithValue("@user_id", id);
                             int rowAffected = cmd1.ExecuteNonQuery();
-                            if(rowAffected > 0)
+                            if (rowAffected > 0)
                             {
                                 MessageBox.Show("Blacklisting Done!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
@@ -233,12 +234,12 @@ namespace LMS
         private void lvwList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-             if (lvwList.SelectedIndices.Count == 0)
+            if (lvwList.SelectedIndices.Count == 0)
             {
                 btnBlacklist.Enabled = false;
                 btnPenalty.Enabled = false;
             }
-         
+
         }
     }
 }

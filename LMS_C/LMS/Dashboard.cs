@@ -21,7 +21,7 @@ namespace LMS.Resources
             displayAdminName();
             expiredCount();
         }
-        private void UpdateRowCountLabel()
+        public void UpdateRowCountLabel()
         {
             try
             {
@@ -29,24 +29,28 @@ namespace LMS.Resources
                 {
                     myconn.Open();
                     string countQuery = "SELECT COUNT(*) FROM users";
-                    string activeCount = "SELECT SUM(copies) FROM borrower_return_record WHERE bk_return_date IS NULL";
-                    string expiredCount = "SELECT COUNT(*) FROM borrower_record WHERE due_date <= @date";
+                    string activeCount = "SELECT COUNT(*) FROM borrower_return_record WHERE bk_return_date IS NULL";
+                    string expiredCount = "SELECT COUNT(*) FROM borrower_record WHERE due_date <= NOW()";
                     using (MySqlCommand cmd = new MySqlCommand(countQuery, myconn))
                     {
                         int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
                         // Update the label with the row count
-                        lblActiveUsers.Text = rowCount.ToString();
+                       
+                            lblActiveUsers.Text = rowCount.ToString();
+                       
                     }
                     using (MySqlCommand cmd = new MySqlCommand(activeCount, myconn))
                     {
 
                         int active = Convert.ToInt32(cmd.ExecuteScalar());
-                        lblActiveLoans.Text = active.ToString();
+                      
+                            lblActiveLoans.Text = active.ToString();
+                       
+                       
                     }
                     DateTime duedate = DateTime.Now;
                     using (MySqlCommand cmd = new MySqlCommand(expiredCount, myconn))
                     {
-                        cmd.Parameters.AddWithValue("@date", duedate);
                         int expired = Convert.ToInt32(cmd.ExecuteScalar());
                         lblExpiredLoans.Text = expired.ToString();
                     }
