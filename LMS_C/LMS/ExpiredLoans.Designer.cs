@@ -37,17 +37,17 @@
             columnHeader4 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
             columnHeader8 = new ColumnHeader();
+            columnHeader9 = new ColumnHeader();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             btnBlacklist = new Button();
             btnPenalty = new Button();
-            columnHeader9 = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lvwList
             // 
-            lvwList.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader1, columnHeader2, columnHeader3, columnHeader5, columnHeader4, columnHeader6, columnHeader8, columnHeader9 });
+            lvwList.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader1, columnHeader2, columnHeader3, columnHeader9, columnHeader5, columnHeader4, columnHeader6, columnHeader8 });
             lvwList.FullRowSelect = true;
             lvwList.GridLines = true;
             lvwList.Location = new Point(12, 64);
@@ -83,31 +83,33 @@
             // 
             // columnHeader5
             // 
-            columnHeader5.DisplayIndex = 5;
             columnHeader5.Text = "Due Date";
             columnHeader5.TextAlign = HorizontalAlignment.Center;
             columnHeader5.Width = 120;
             // 
             // columnHeader4
             // 
-            columnHeader4.DisplayIndex = 6;
             columnHeader4.Text = "Days Overdue";
             columnHeader4.TextAlign = HorizontalAlignment.Center;
             columnHeader4.Width = 120;
             // 
             // columnHeader6
             // 
-            columnHeader6.DisplayIndex = 7;
             columnHeader6.Text = "Penalty Applied";
             columnHeader6.TextAlign = HorizontalAlignment.Center;
             columnHeader6.Width = 100;
             // 
             // columnHeader8
             // 
-            columnHeader8.DisplayIndex = 8;
             columnHeader8.Text = "Penalty Return Date ";
             columnHeader8.TextAlign = HorizontalAlignment.Center;
             columnHeader8.Width = 150;
+            // 
+            // columnHeader9
+            // 
+            columnHeader9.Text = "Penalty Count";
+            columnHeader9.TextAlign = HorizontalAlignment.Center;
+            columnHeader9.Width = 100;
             // 
             // label1
             // 
@@ -152,13 +154,6 @@
             btnPenalty.Text = "Penalty";
             btnPenalty.UseVisualStyleBackColor = true;
             btnPenalty.Click += btnPenalty_Click;
-            // 
-            // columnHeader9
-            // 
-            columnHeader9.DisplayIndex = 4;
-            columnHeader9.Text = "Penalty Count";
-            columnHeader9.TextAlign = HorizontalAlignment.Center;
-            columnHeader9.Width = 100;
             // 
             // frmExpiredLoans
             // 

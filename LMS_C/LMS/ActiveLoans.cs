@@ -36,7 +36,7 @@ namespace LMS
                 using (MySqlConnection myconn = new MySqlConnection(con))
                 {
                     myconn.Open();
-                    string sql = "SELECT student_number, bktitle, full_name, copies, borrow_date, due_date, bk_return_date FROM borrower_return_record INNER JOIN users ON users.user_id = borrower_return_record.user_id";
+                    string sql = "SELECT student_number, bktitle, full_name, copies, borrow_date, due_date, bk_return_date FROM borrower_return_record INNER JOIN users ON users.user_id = borrower_return_record.user_id WHERE borrow_date < due_date AND bk_return_date IS NULL";
 
                     lvwList.Items.Clear();
                     using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
@@ -46,8 +46,7 @@ namespace LMS
 
                             while (rdr.Read())
                             {
-                                if (rdr["bk_return_date"] is DBNull)
-                                {
+                               
                                     ListViewItem item = new ListViewItem(rdr["student_number"].ToString());
                                     item.SubItems.Add(rdr["full_name"].ToString());
                                     item.SubItems.Add(rdr["bktitle"].ToString());
@@ -55,8 +54,6 @@ namespace LMS
                                     item.SubItems.Add(rdr["borrow_date"].ToString());
                                     item.SubItems.Add(rdr["due_date"].ToString());
                                     listview.Items.Add(item);
-                                }
-
                             }
 
                         }

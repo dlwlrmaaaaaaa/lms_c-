@@ -202,12 +202,9 @@ namespace LMS
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            if(listView1.SelectedIndices.Count > 0)
+            if(listView1.SelectedIndices.Count <= 0)
             {
-                btnReturn.Enabled = true;
-            }
-            else
-            {
+                btnLost.Enabled = false;
                 btnReturn.Enabled = false;
             }
         }
@@ -326,6 +323,7 @@ namespace LMS
                         return;
                     }
                 }
+
                 catch (MySqlException ex)
                 {
                     MessageBox.Show("Error LostClick: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

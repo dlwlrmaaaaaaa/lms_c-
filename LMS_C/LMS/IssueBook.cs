@@ -82,22 +82,23 @@ namespace LMS
                 MessageBox.Show("Issue Books: " + e.Message);
             }
         }
-        private void ifSuspended()
+        public void ifSuspended()
         {
             try
             {
                 using (MySqlConnection myconn = new MySqlConnection(con))
                 {
                     myconn.Open();
-                    string sql = "SELECT COUNT(*) FROM borrower_return_record WHERE user_id = @id AND due_date < NOW() AND bk_return_date IS NULL";
+                    string sql = "SELECT COUNT(*) FROM penalty WHERE user_id = @user_id AND penalty_date > NOW()";
                     using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
                     {
-                        cmd.Parameters.AddWithValue("@id", user_id);
-                         int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        ListViewItem selectedItem = listView1.SelectedItems[0];
+                        int id = int.Parse(selectedItem.SubItems[1].Text);
+                        cmd.Parameters.AddWithValue("@user_id", id);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
                         if (count > 0)
                         {
-                            currentlySuspended = true;
-                           
+                            currentlySuspended = true;                     
                         }
 
                     }
@@ -156,16 +157,14 @@ namespace LMS
             ifSuspended();
             if (currentlySuspended)
             {
-                MessageBox.Show("You cannot issue a suspended User", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("You cannot issue abook for suspended User", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 currentlySuspended = false;
                 return;
-
             }
             DialogResult res = MessageBox.Show("Click yes to confirm.", "Confirming...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DialogResult.Yes == res)
-            {
+            {            
                 ListViewItem selectedItem = listView1.SelectedItems[0];
-
                 try
                 {
                     using (MySqlConnection myconn1 = new MySqlConnection(con))

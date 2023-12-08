@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using LMS.Resources;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,7 +70,7 @@ namespace LMS
                 using (myconn = new MySqlConnection(con))
                 {
                     myconn.Open();
-                    string sql = "SELECT borrower_return_record.user_id, users.student_number, users.full_name, borrower_return_record.bktitle, borrower_return_record.due_date, borrower_return_record.isPenalty, penalty.return_deadline " +
+                    string sql = "SELECT borrower_return_record.user_id, users.student_number, users.full_name, borrower_return_record.bktitle, penalty_count, borrower_return_record.due_date, borrower_return_record.isPenalty, penalty.return_deadline " +
                          "FROM borrower_return_record " +
                          "INNER JOIN users ON users.user_id = borrower_return_record.user_id " +
                          "LEFT JOIN penalty ON penalty.user_id = borrower_return_record.user_id " +
@@ -90,6 +91,7 @@ namespace LMS
                                     item.SubItems.Add(rdr["student_number"].ToString());
                                     item.SubItems.Add(rdr["full_name"].ToString());
                                     item.SubItems.Add(rdr["bktitle"].ToString());
+                                    item.SubItems.Add(rdr["penalty_count"].ToString());
                                     item.SubItems.Add(rdr["due_date"].ToString());
                                     item.SubItems.Add(overdueDays.ToString());
                                     item.SubItems.Add(rdr["isPenalty"].ToString());
@@ -123,9 +125,37 @@ namespace LMS
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
+        public int updatePenaltyTable;
+        public void updateCountPenalty()
+        {
+            try
+            {
+                using (MySqlConnection myconn = new MySqlConnection(con))
+                {
+                    myconn.Open();
+                    string select = "SELECT COUNT(*) FROM penalty WHERE user_id = @user_id";
+                    ListViewItem selectedUserId = lvwList.SelectedItems[0];
+                    using (MySqlCommand cmd = new MySqlCommand(select, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@user_id", user_id);
+                        using (MySqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            if (rdr.Read())
+                            {
 
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
         public int existUser = 0;
         public void checkCurrentPenalty()
         {
@@ -177,13 +207,13 @@ namespace LMS
                             myconn1.Open();
                             try
                             {
-                                string sql = "UPDATE penalty SET penalty_count = @penalty_count, penalty_date = @date WHERE user_id = @user_id";
+                                string sql = "UPDATE penalty SET penalty_count = @penalty_count, penalty_date = DATE_ADD(penalty_date, INTERVAL @daysToAdd DAY) WHERE user_id = @user_id";
                                 using (MySqlCommand cmd = new MySqlCommand(sql, myconn1))
                                 {
                                     int id = int.Parse(selectedItem.SubItems[0].Text);
                                     DateTime date = DateTime.Now;
                                     cmd.Parameters.AddWithValue("@user_id", id);
-                                    cmd.Parameters.AddWithValue("@date", date.AddDays(7));
+                                    cmd.Parameters.AddWithValue("@daysToAdd",7);
                                     cmd.Parameters.AddWithValue("@penalty_count", penaltyCount + 1);
                                     cmd.ExecuteNonQuery();
                                 }
@@ -224,14 +254,15 @@ namespace LMS
                         try
                         {
 
-                        }catch(MySqlException y)
+                        }
+                        catch (MySqlException y)
                         {
                             MessageBox.Show("y -> " + y.Message);
                         }
                         if (penaltyCount > 2)
                         {
-     
-                           
+
+
                             using (MySqlConnection myconn3 = new MySqlConnection(con))
                             {
                                 myconn3.Open();
@@ -277,7 +308,7 @@ namespace LMS
                                         int rowAffected = cmd1.ExecuteNonQuery();
                                         if (rowAffected > 0)
                                         {
-                                            MessageBox.Show("You have reached " + penaltyCount + " Penalty Count\n Blacklisted Applied" , "Notification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            MessageBox.Show("You have reached " + penaltyCount + " Penalty Count\n Blacklisted Applied", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                         }
                                     }
                                 }
@@ -285,8 +316,8 @@ namespace LMS
                                 {
                                     MessageBox.Show("y -> " + y.Message);
                                 }
-                                
-                               
+
+
                             }
                         }
 
@@ -299,13 +330,14 @@ namespace LMS
                             try
                             {
                                 myconn2.Open();
-                                string sql = "INSERT INTO penalty (user_id, penalty_date, return_deadline) VALUES (@user_id, @date, @rd)";
+                                string sql = "INSERT INTO penalty (user_id, penalty_date, penalty_count, return_deadline) VALUES (@user_id, @date, @penalty_count, @rd)";
                                 using (MySqlCommand cmd = new MySqlCommand(sql, myconn2))
                                 {
                                     int id = int.Parse(selectedItem.SubItems[0].Text);
                                     DateTime date = DateTime.Now;
                                     cmd.Parameters.AddWithValue("@user_id", id);
                                     cmd.Parameters.AddWithValue("@date", date.AddDays(2));
+                                    cmd.Parameters.AddWithValue("@penalty_count", 1);
                                     cmd.Parameters.AddWithValue("@rd", date.AddDays(7));
                                     cmd.ExecuteNonQuery();
                                 }
@@ -323,7 +355,10 @@ namespace LMS
                                     string updateSql = "UPDATE borrower_return_record SET isPenalty = @true WHERE user_id = @user_id AND bktitle = @title AND bk_return_date IS NULL";
                                     using (MySqlCommand cmd1 = new MySqlCommand(updateSql, myconn2))
                                     {
+                                        int id = int.Parse(selectedItem.SubItems[0].Text);
                                         cmd1.Parameters.AddWithValue("@true", "true");
+                                        cmd1.Parameters.AddWithValue("@user_id", id);
+                                        cmd1.Parameters.AddWithValue("@title", selectedItem.SubItems[3].Text);
                                         int rowsAffected = cmd1.ExecuteNonQuery();
                                         if (rowsAffected > 0)
                                         {
@@ -341,6 +376,10 @@ namespace LMS
                             {
                                 MessageBox.Show("Eh. " + eh.Message);
                             }
+
+
+
+
                         }
                     }
                     expiredLoans(lvwList);

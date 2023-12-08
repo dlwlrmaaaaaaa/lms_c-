@@ -28,11 +28,12 @@ namespace LMS.Resources
                 using (MySqlConnection myconn = new MySqlConnection(con))
                 {
                     myconn.Open();
-                    string countQuery = "SELECT COUNT(*) FROM users";
-                    string activeCount = "SELECT COUNT(*) FROM borrower_return_record WHERE bk_return_date IS NULL";
+                    string countQuery = "SELECT COUNT(*) FROM users WHERE status = @status";
+                    string activeCount = "SELECT COUNT(*) FROM borrower_return_record WHERE due_date > NOW() AND bk_return_date IS NULL";
                     string expiredCount = "SELECT COUNT(*) FROM borrower_record WHERE due_date <= NOW()";
                     using (MySqlCommand cmd = new MySqlCommand(countQuery, myconn))
                     {
+                        cmd.Parameters.AddWithValue("@status", "Active");
                         int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
                         // Update the label with the row count
                        
