@@ -1790,11 +1790,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\newLMS\\lms_c-\\LMS_C\\LMS\\LMS.csproj",
+      "projectUniqueName": "C:\\Users\\aujrc\\OneDrive\\Desktop\\newLMS\\lms_c-\\LMS_C\\LMS\\LMS.csproj",
       "projectName": "LMS",
-      "projectPath": "C:\\newLMS\\lms_c-\\LMS_C\\LMS\\LMS.csproj",
+      "projectPath": "C:\\Users\\aujrc\\OneDrive\\Desktop\\newLMS\\lms_c-\\LMS_C\\LMS\\LMS.csproj",
       "packagesPath": "C:\\Users\\aujrc\\.nuget\\packages\\",
-      "outputPath": "C:\\newLMS\\lms_c-\\LMS_C\\LMS\\obj\\",
+      "outputPath": "C:\\Users\\aujrc\\OneDrive\\Desktop\\newLMS\\lms_c-\\LMS_C\\LMS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\aujrc\\AppData\\Roaming\\NuGet\\NuGet.Config",

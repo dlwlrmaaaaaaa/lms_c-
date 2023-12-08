@@ -8,6 +8,7 @@ namespace LMS
     {
         private int admin_id;
         private int user_id;
+        Boolean currentlySuspended = false;
         private int book_id ;
         private int borrow_id;
         private string title, copies;
@@ -81,6 +82,34 @@ namespace LMS
                 MessageBox.Show("Issue Books: " + e.Message);
             }
         }
+        private void ifSuspended()
+        {
+            try
+            {
+                using (MySqlConnection myconn = new MySqlConnection(con))
+                {
+                    myconn.Open();
+                    string sql = "SELECT COUNT(*) FROM borrower_return_record WHERE user_id = @id AND due_date < NOW() AND bk_return_date IS NULL";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, myconn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", user_id);
+                         int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        if (count > 0)
+                        {
+                            currentlySuspended = true;
+                           
+                        }
+
+                    }
+                }
+
+
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show("sa issuebooks : " + e.Message);
+            }
+        }
         private void btnDeny_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show("Click yes to confirm.", "Denying...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -124,6 +153,14 @@ namespace LMS
         DateTime date = DateTime.Now;
         private void btnIssue_Click(object sender, EventArgs e)
         {
+            ifSuspended();
+            if (currentlySuspended)
+            {
+                MessageBox.Show("You cannot issue a suspended User", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                currentlySuspended = false;
+                return;
+
+            }
             DialogResult res = MessageBox.Show("Click yes to confirm.", "Confirming...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DialogResult.Yes == res)
             {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xKl8+sY0UiObpeQaD1WAnbyI+7rjE9KYM2aV7V91yUgpO4ZU0rCUuGJBmjCjaRLrcbSQCQrcIirCy19Tb2M9/g==",
+  "dgSpecHash": "XhgmsrEXcaIqUqZgIUTsWHTxM2//Ko6Jp+VGMrz6wSLEZe/+z3YB9uHlkXU8aVlPIiBxiKhrB9nmBEebDxVUvg==",
   "success": true,
-  "projectFilePath": "C:\\newLMS\\lms_c-\\LMS_C\\LMS\\LMS.csproj",
+  "projectFilePath": "C:\\Users\\aujrc\\OneDrive\\Desktop\\newLMS\\lms_c-\\LMS_C\\LMS\\LMS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aujrc\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\aujrc\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",
