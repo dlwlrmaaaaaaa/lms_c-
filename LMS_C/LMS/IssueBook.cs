@@ -279,6 +279,8 @@ namespace LMS
 
                 MessageBox.Show("Successful!");
                 showBorrowUser(listView1);
+                btnDeny.Enabled = false;
+                btnIssue.Enabled = false;
             }
             else
             {

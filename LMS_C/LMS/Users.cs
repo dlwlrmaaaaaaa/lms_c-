@@ -136,7 +136,7 @@ namespace LMS
                                     item.SubItems.Add(rdr.GetString(1));
                                     item.SubItems.Add(rdr.GetString(2));
                                     item.SubItems.Add(rdr.GetString(3));
-                                    item.SubItems.Add(rdr.GetString(4));
+                                    item.SubItems.Add(rdr.GetString(5));
                                     listview.Items.Add(item);
                                 }
                             }
