@@ -277,7 +277,7 @@ namespace LMS
                     MessageBox.Show("Error sa btnIssueClick() : " + ex.Message);
                 }
 
-                MessageBox.Show("Successful!");
+                MessageBox.Show("Succesfull!", "Notifcation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 showBorrowUser(listView1);
                 btnDeny.Enabled = false;
                 btnIssue.Enabled = false;

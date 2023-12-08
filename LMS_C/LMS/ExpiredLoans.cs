@@ -125,7 +125,11 @@ namespace LMS
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            frmDashboard dashboard = Application.OpenForms["frmDashboard"] as frmDashboard;
+            if (dashboard != null)
+            {
+                dashboard.UpdateRowCountLabel();
+            }
             this.Close();
         }
         public int updatePenaltyTable;
@@ -226,14 +230,13 @@ namespace LMS
 
                             try
                             {
-                                string updateSql = "UPDATE borrower_return_record SET isPenalty = @true WHERE user_id = @user_id AND bktitle = @title AND bk_return_date IS NULL";
+                                string updateSql = "UPDATE borrower_return_record SET isPenalty = @true WHERE user_id = @user_id AND bk_return_date IS NULL";
                                 using (MySqlCommand cmd1 = new MySqlCommand(updateSql, myconn1))
                                 {
                                     int user_id = int.Parse(selectedItem.SubItems[0].Text);
 
                                     cmd1.Parameters.AddWithValue("@true", "true");
-                                    cmd1.Parameters.AddWithValue("@user_id", user_id);
-                                    cmd1.Parameters.AddWithValue("@title", selectedItem.SubItems[3].Text);
+                                    cmd1.Parameters.AddWithValue("@user_id", user_id);        
                                     int rowsAffected = cmd1.ExecuteNonQuery();
                                     if (rowsAffected > 0)
                                     {
@@ -305,6 +308,13 @@ namespace LMS
                                     {
                                         int id = int.Parse(selectedItem.SubItems[0].Text);
                                         cmd1.Parameters.AddWithValue("@user_id", id);
+                                        cmd1.ExecuteNonQuery();
+                                    }
+                                    string deletefrompenalty = "DELETE FROM penalty WHERE user_id = @user_id";
+                                    using (MySqlCommand cmd1 = new MySqlCommand(deletefrompenalty, myconn3))
+                                    {
+                                        int id = int.Parse(selectedItem.SubItems[0].Text);
+                                        cmd1.Parameters.AddWithValue("@user_id", id);
                                         int rowAffected = cmd1.ExecuteNonQuery();
                                         if (rowAffected > 0)
                                         {
@@ -352,7 +362,7 @@ namespace LMS
                                 using (MySqlConnection myconn = new MySqlConnection(con))
                                 {
                                     myconn.Open();
-                                    string updateSql = "UPDATE borrower_return_record SET isPenalty = @true WHERE user_id = @user_id AND bktitle = @title AND bk_return_date IS NULL";
+                                    string updateSql = "UPDATE borrower_return_record SET isPenalty = @true WHERE user_id = @user_id AND bk_return_date IS NULL";
                                     using (MySqlCommand cmd1 = new MySqlCommand(updateSql, myconn2))
                                     {
                                         int id = int.Parse(selectedItem.SubItems[0].Text);
@@ -362,7 +372,7 @@ namespace LMS
                                         int rowsAffected = cmd1.ExecuteNonQuery();
                                         if (rowsAffected > 0)
                                         {
-                                            MessageBox.Show("Penalty Applied!");
+                                            MessageBox.Show("Penalty Applied!", "Notifcation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                         }
                                         else
                                         {

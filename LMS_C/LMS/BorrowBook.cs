@@ -288,6 +288,7 @@ namespace LMS
                             checkIfSameBook();
                             CheckIfIdenticalBook();
                         }
+                        this.Close();
                     }
                     else
                     {

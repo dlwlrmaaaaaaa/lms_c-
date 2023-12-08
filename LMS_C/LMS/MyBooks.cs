@@ -336,7 +336,7 @@ namespace LMS
                                 {
                                     try
                                     {
-                                        string delete = "DELETE * FROM borrower_return_record WHERE user_id = @user_id AND bk_return_date IS NULL";
+                                        string delete = "DELETE FROM borrower_return_record WHERE user_id = @user_id AND bk_return_date IS NULL";
                                         using (MySqlCommand cmd = new MySqlCommand(delete, myconn))
                                         {
                                             cmd.Parameters.AddWithValue("@user_id", user_id);
@@ -352,7 +352,7 @@ namespace LMS
                                                 "Reason: you lost 3 Books", "Notfication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                                         }
-                                        this.Close();
+                                        this.Hide();
                                         frmLogin login = new frmLogin();
                                         login.Show();
                                     }
